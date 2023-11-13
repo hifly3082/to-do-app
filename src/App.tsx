@@ -1,11 +1,14 @@
 import AppLayout from './ui/AppLayout'
+import TodosList from './components/TodosList'
+import AddTodoForm from './components/AddTodoForm'
 import './App.css'
 
 function App() {
   return (
-    <div>
-      <AppLayout />
-    </div>
+    <AppLayout>
+      <AddTodoForm />
+      <TodosList />
+    </AppLayout>
   )
 }
 

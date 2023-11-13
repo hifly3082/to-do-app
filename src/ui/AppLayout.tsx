@@ -1,5 +1,5 @@
 import { UnorderedListOutlined, UserOutlined } from '@ant-design/icons'
-import { Breadcrumb, Layout, Menu, theme } from 'antd'
+import { Layout, Menu, theme } from 'antd'
 import type { MenuProps } from 'antd'
 
 import SearchBar from '../components/SearchBar'
@@ -31,7 +31,7 @@ const items: MenuItem[] = [
   getItem('Account', '2', <UserOutlined />)
 ]
 
-const AppLayout: React.FC = () => {
+const AppLayout: React.FC = ({ children }) => {
   const {
     token: { colorBgContainer }
   } = theme.useToken()
@@ -57,11 +57,6 @@ const AppLayout: React.FC = () => {
           />
         </Sider>
         <Layout style={{ padding: '0 24px 24px' }}>
-          <Breadcrumb style={{ margin: '16px 0' }}>
-            <Breadcrumb.Item>Home</Breadcrumb.Item>
-            <Breadcrumb.Item>User lists</Breadcrumb.Item>
-            <Breadcrumb.Item>To do</Breadcrumb.Item>
-          </Breadcrumb>
           <Content
             style={{
               padding: 24,
@@ -69,7 +64,7 @@ const AppLayout: React.FC = () => {
               minHeight: 280,
               background: colorBgContainer
             }}>
-            Content
+            {children}
           </Content>
         </Layout>
       </Layout>
