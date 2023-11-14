@@ -9,7 +9,7 @@ const AppLayout: React.FC = ({ children }) => {
       <HeaderContainer />
       <Layout>
         <SiderContainer />
-        <Layout style={{ padding: '0 24px 24px' }}>{children}</Layout>
+        <Layout style={{ padding: '24px 24px' }}>{children}</Layout>
       </Layout>
     </Layout>
   )
