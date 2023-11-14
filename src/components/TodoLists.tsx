@@ -1,6 +1,6 @@
 import { useStoreState } from 'easy-peasy'
 
-function TodosList() {
+function TodoLists() {
   const todos = useStoreState((state) => state.todos)
 
   return (
@@ -12,4 +12,4 @@ function TodosList() {
   )
 }
 
-export default TodosList
+export default TodoLists
