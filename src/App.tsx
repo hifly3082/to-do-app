@@ -9,11 +9,11 @@ import {
 
 import AppLayout from './ui/AppLayout'
 import TodoItem from './components/TodoItem'
-import TodosList from './components/TodosList'
+import AddTodoForm from './components/AddTodoForm'
+import TodoLists from './components/TodoLists'
 import About from './components/About'
 import Account from './components/Account'
 import './App.css'
-import AddTodoForm from './components/AddTodoForm'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -25,16 +25,16 @@ const router = createBrowserRouter(
         </AppLayout>
       }>
       <Route index element={<Navigate to='/todolist' replace={true} />} />
+      <Route path='lists' element={<TodoLists />} />
       <Route
-        path='lists'
+        path='lists/todo'
         element={
           <>
             <AddTodoForm />
-            <TodosList />
+            <TodoItem />
           </>
         }
       />
-      <Route path='lists/todo' element={<TodoItem />} />
       <Route path='about' element={<About />} />
       <Route path='account' element={<Account />} />
     </Route>
