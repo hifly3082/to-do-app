@@ -2,6 +2,7 @@ import { useStoreState } from 'easy-peasy'
 
 function TodosList() {
   const todos = useStoreState((state) => state.todos)
+
   return (
     <ul>
       {todos.map((todo) => (
