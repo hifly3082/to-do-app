@@ -16,7 +16,7 @@ const AddTodoForm = () => {
 
   return (
     <Space direction='vertical' size='middle' style={{ display: 'flex' }}>
-      <Card title='Card' size='small'>
+      <Card title='Add task' size='small'>
         <Form {...layout} form={form} onFinish={onFinish}>
           <Form.Item
             label='Name'
@@ -43,9 +43,9 @@ const AddTodoForm = () => {
             <DatePicker />
           </Form.Item>
 
-          <Form.Item wrapperCol={{ offset: 6, span: 18 }}>
+          <Form.Item wrapperCol={{ offset: 4, span: 18 }}>
             <Button type='primary' htmlType='submit'>
-              Add Todo
+              Add task
             </Button>
           </Form.Item>
         </Form>

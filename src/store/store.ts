@@ -12,10 +12,10 @@ const storeModel = {
   todos: [],
   addTodo: action((state, payload) => {
     state.todos.push({
+      status: false,
       name: payload.name,
       description: payload.description,
-      dueDate: payload.dueDate,
-      status: false
+      dueDate: payload.dueDate
     })
   })
 }
