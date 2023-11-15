@@ -7,8 +7,8 @@ const layout = {
 }
 
 const AddTodoForm = () => {
-  const addTodo = useStoreActions((actions) => actions.addTodo)
   const [form] = Form.useForm()
+  const addTodo = useStoreActions((actions) => actions.addTodo)
 
   const onFinish = (values) => {
     addTodo(values)
@@ -55,6 +55,3 @@ const AddTodoForm = () => {
 }
 
 export default AddTodoForm
-
-// <input onChange={(e) => setTodoText(e.target.value)} value={todoText} />
-// <button onClick={() => addTodo(todoText)}>Add Todo</button>

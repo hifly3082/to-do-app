@@ -49,9 +49,9 @@ const NavMenu = () => {
   return (
     <Menu
       theme='dark'
+      mode='inline'
       defaultSelectedKeys={[RouteNames.About]}
       selectedKeys={[location.pathname]}
-      mode='inline'
       items={items}
     />
   )

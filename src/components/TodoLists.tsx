@@ -6,7 +6,7 @@ function TodoLists() {
   return (
     <ul>
       {todos.map((todo) => (
-        <li key={todo.name}>{todo.name}</li>
+        <li key={todo.id}>{todo.name}</li>
       ))}
     </ul>
   )
