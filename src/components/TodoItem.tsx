@@ -1,27 +1,31 @@
 import { useStoreState } from 'easy-peasy'
-import { Table, Button } from 'antd'
-import { ForkOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons'
+import { Table, Button, Checkbox } from 'antd'
+import { CopyOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons'
 
 const columns = [
   {
     title: 'Check Status',
     dataIndex: 'status',
-    key: 'status'
+    key: 'status',
+    render: (text, record) => <Checkbox checked={record.key} />
   },
   {
     title: 'Name',
     dataIndex: 'name',
-    key: 'name'
+    key: 'name',
+    width: '15%'
   },
   {
     title: 'Description',
     dataIndex: 'description',
-    key: 'description'
+    key: 'description',
+    width: '40%'
   },
   {
     title: 'Due Date',
     dataIndex: 'dueDate',
-    key: 'dueDate'
+    key: 'dueDate',
+    width: '10%'
   },
   {
     title: 'Action',
@@ -32,7 +36,7 @@ const columns = [
           <EditOutlined />
         </Button>
         <Button type='link' onClick={() => handleDuplicate(record.key)}>
-          <ForkOutlined />
+          <CopyOutlined />
         </Button>
         <Button type='link' onClick={() => handleDelete(record.key)}>
           <DeleteOutlined />

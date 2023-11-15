@@ -1,12 +1,11 @@
 import { Avatar, Typography } from 'antd'
 import { UserOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
+import { RouteNames } from '../types'
 
 const styles = {
   container: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end'
+    display: 'flex'
   },
   username: {
     marginLeft: 8,
@@ -16,12 +15,10 @@ const styles = {
 
 const UserInfo = () => {
   return (
-    <div style={styles.container}>
-      <Link to='/account'>
-        <Avatar size='small' icon={<UserOutlined />} />
-        <Typography.Text style={styles.username}>Username</Typography.Text>
-      </Link>
-    </div>
+    <Link to={`/${RouteNames.Account}`}>
+      <Avatar size='small' icon={<UserOutlined />} />
+      <Typography.Text style={styles.username}>Username</Typography.Text>
+    </Link>
   )
 }
 
