@@ -1,4 +1,5 @@
 export interface Todo {
+  id: string
   status: boolean
   name: string
   description: string
