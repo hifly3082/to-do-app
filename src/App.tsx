@@ -14,20 +14,21 @@ import TodoLists from './components/TodoLists'
 import About from './components/About'
 import Account from './components/Account'
 import './App.css'
+import { RouteNames } from './types'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route
-      path='/*'
+      path='/'
       element={
         <AppLayout>
           <Outlet />
         </AppLayout>
       }>
-      <Route index element={<Navigate to='/todolist' replace={true} />} />
-      <Route path='lists' element={<TodoLists />} />
+      <Route index element={<Navigate to={RouteNames.Todo} replace={true} />} />
+      <Route path={RouteNames.Lists} element={<TodoLists />} />
       <Route
-        path='lists/todo'
+        path={RouteNames.Todo}
         element={
           <>
             <AddTodoForm />
@@ -35,8 +36,8 @@ const router = createBrowserRouter(
           </>
         }
       />
-      <Route path='about' element={<About />} />
-      <Route path='account' element={<Account />} />
+      <Route path={RouteNames.About} element={<About />} />
+      <Route path={RouteNames.Account} element={<Account />} />
     </Route>
   )
 )

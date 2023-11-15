@@ -1,7 +1,7 @@
 import { createStore, action, persist } from 'easy-peasy'
 
 const todoModel = {
-  status: false,
+  status: true,
   name: '',
   description: '',
   dueDate: ''

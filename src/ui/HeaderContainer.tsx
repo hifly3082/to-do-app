@@ -1,5 +1,5 @@
 import { Header } from 'antd/es/layout/layout'
-import SearchBar from '../components/SearchBar'
+// import SearchBar from '../components/SearchBar'
 import UserInfo from '../components/UserInfo'
 
 const HeaderContainer = () => {
@@ -7,8 +7,7 @@ const HeaderContainer = () => {
     <Header
       style={{
         display: 'flex',
-        justifyContent: 'flex-end',
-        position: 'relative'
+        justifyContent: 'flex-end'
       }}>
       {/* <SearchBar /> */}
       <UserInfo />

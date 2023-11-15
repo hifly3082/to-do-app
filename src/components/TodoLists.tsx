@@ -6,7 +6,7 @@ function TodoLists() {
   return (
     <ul>
       {todos.map((todo) => (
-        <li key={todo.text}>{todo.text}</li>
+        <li key={todo.name}>{todo.name}</li>
       ))}
     </ul>
   )
