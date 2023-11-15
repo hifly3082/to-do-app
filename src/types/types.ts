@@ -1,10 +1,8 @@
 export interface Todo {
-  text: string
-  done: boolean
-}
-
-export interface StoreModel {
-  todos: Todo[]
+  status: boolean
+  name: string
+  description: string
+  dueDate: string
 }
 
 export const enum RouteNames {

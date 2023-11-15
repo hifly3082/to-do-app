@@ -7,7 +7,7 @@ const columns = [
     title: 'Check Status',
     dataIndex: 'status',
     key: 'status',
-    render: (text, record) => <Checkbox checked={record.key} />
+    render: (status: boolean) => <Checkbox checked={status} />
   },
   {
     title: 'Name',
@@ -30,7 +30,7 @@ const columns = [
   {
     title: 'Action',
     key: 'action',
-    render: (text, record) => (
+    render: (record) => (
       <span>
         <Button type='link' onClick={() => handleEdit(record.key)}>
           <EditOutlined />
