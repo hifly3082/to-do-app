@@ -8,13 +8,12 @@ import {
 } from 'react-router-dom'
 
 import AppLayout from './ui/AppLayout'
-import TodoItem from './components/TodoItem'
-import AddTodoForm from './components/AddTodoForm'
 import TodoLists from './components/TodoLists'
-import About from './components/About'
-import Account from './components/Account'
+import About from './pages/about/About'
+import Account from './pages/account/Account'
 import './App.css'
 import { RouteNames } from './types'
+import TodoList from './pages/todolist/TodoList'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -27,15 +26,7 @@ const router = createBrowserRouter(
       }>
       <Route index element={<Navigate to={RouteNames.Todo} replace={true} />} />
       <Route path={RouteNames.Lists} element={<TodoLists />} />
-      <Route
-        path={RouteNames.Todo}
-        element={
-          <>
-            <AddTodoForm />
-            <TodoItem />
-          </>
-        }
-      />
+      <Route path={RouteNames.Todo} element={<TodoList />} />
       <Route path={RouteNames.About} element={<About />} />
       <Route path={RouteNames.Account} element={<Account />} />
     </Route>

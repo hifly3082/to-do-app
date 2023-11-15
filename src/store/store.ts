@@ -24,6 +24,12 @@ const todoModel: Todo = {
 const storeModel: StoreModel = {
   todo: todoModel,
   todos: [],
+  modal: {
+    isModalOpen: false,
+    toggleModal: action((state) => {
+      state.isModalOpen = !state.isModalOpen
+    })
+  },
   addTodo: action((state, payload) => {
     state.todos.push({
       id: generateId(),
