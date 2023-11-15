@@ -3,7 +3,7 @@ import { Layout } from 'antd'
 import SiderContainer from './SiderContainer'
 import HeaderContainer from './HeaderContainer'
 
-const AppLayout: React.FC = ({ children }) => {
+const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <Layout style={{ height: '100vh' }}>
       <HeaderContainer />

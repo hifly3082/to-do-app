@@ -1,18 +1,25 @@
-import { createStore, action, persist } from 'easy-peasy'
+import { createStore, action, persist, Action } from 'easy-peasy'
+import { Todo } from '../types'
 
-const todoModel = {
-  status: true,
+interface StoreModel {
+  todo: Todo
+  todos: Todo[]
+  addTodo: Action<StoreModel, Todo>
+}
+
+const todoModel: Todo = {
+  status: false,
   name: '',
   description: '',
   dueDate: ''
 }
 
-const storeModel = {
+const storeModel: StoreModel = {
   todo: todoModel,
   todos: [],
   addTodo: action((state, payload) => {
     state.todos.push({
-      status: false,
+      status: true,
       name: payload.name,
       description: payload.description,
       dueDate: payload.dueDate
