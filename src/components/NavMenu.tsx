@@ -27,18 +27,18 @@ function getItem(
 const items: MenuItem[] = [
   getItem(
     <Link to={`/${RouteNames.Lists}`}>User lists</Link>,
-    RouteNames.Lists,
+    `/${RouteNames.Lists}`,
     <UnorderedListOutlined />,
     [getItem(<Link to={`/${RouteNames.Todo}`}>To do</Link>, RouteNames.Todo)]
   ),
   getItem(
     <Link to={`/${RouteNames.Account}`}>Account</Link>,
-    RouteNames.Account,
+    `/${RouteNames.Account}`,
     <UserOutlined />
   ),
   getItem(
     <Link to={`/${RouteNames.About}`}>About</Link>,
-    RouteNames.About,
+    `/${RouteNames.About}`,
     <SecurityScanOutlined />
   )
 ]

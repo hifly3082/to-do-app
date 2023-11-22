@@ -1,39 +1,33 @@
 import { createStore, action, persist, Action } from 'easy-peasy'
-import { Todo } from '../types'
+import { BaseTodo, ExtendedTodo } from '../types'
+import { generateId } from '../utilities/helpers'
+import dayjs from 'dayjs'
 
-const generateId = (): string => {
-  return `id-${Date.now()}-${Math.floor(Math.random() * 1000)}`
-}
-
-interface StoreModel {
-  todo: Todo
-  todos: Todo[]
-  addTodo: Action<StoreModel, Todo>
-  deleteTodo: Action<StoreModel, string>
-  copyTodo: Action<StoreModel, string>
-}
-
-const todoModel: Todo = {
+const todoModel: ExtendedTodo = {
   id: '',
-  status: false,
+  completed: false,
   name: '',
   description: '',
   dueDate: ''
 }
 
+export interface StoreModel {
+  todo: ExtendedTodo
+  todos: ExtendedTodo[]
+  addTodo: Action<StoreModel, BaseTodo>
+  deleteTodo: Action<StoreModel, string>
+  copyTodo: Action<StoreModel, string>
+  editTodo: Action<StoreModel, ExtendedTodo>
+  toggleStatus: Action<StoreModel, string>
+}
+
 const storeModel: StoreModel = {
   todo: todoModel,
   todos: [],
-  modal: {
-    isModalOpen: false,
-    toggleModal: action((state) => {
-      state.isModalOpen = !state.isModalOpen
-    })
-  },
   addTodo: action((state, payload) => {
     state.todos.push({
       id: generateId(),
-      status: false,
+      completed: false,
       name: payload.name,
       description: payload.description,
       dueDate: payload.dueDate
@@ -45,17 +39,34 @@ const storeModel: StoreModel = {
   copyTodo: action((state, id) => {
     const todoToCopy = state.todos.find((todo) => todo.id === id)
     if (todoToCopy) {
-      const newTodo: Todo = {
+      const newTodo: ExtendedTodo = {
         ...todoToCopy,
         id: generateId()
       }
       state.todos.push(newTodo)
     }
+  }),
+  editTodo: action((state, payload) => {
+    const { todoToEdit, values } = payload
+    // console.log(`payload`, payload)
+    const todo = state.todos.find((todo) => todo.id === todoToEdit.id)
+    if (todo) {
+      todo.name = values.name
+      todo.description = values.description
+      todo.dueDate = values.dueDate
+    }
+  }),
+  toggleStatus: action((state, payload) => {
+    const { id, completed } = payload
+    console.log(`payload id`, id)
+    const todo = state.todos.find((todo) => todo.id === id)
+    console.log('Action called with todoId:', id)
+    if (todo) {
+      todo.completed = !todo.completed
+    }
   })
 }
 
-const store = createStore(persist(storeModel))
-
-// store.flush()
+const store = createStore<StoreModel>(persist(storeModel))
 
 export default store
