@@ -44,7 +44,9 @@ const storeModel: StoreModel = {
     if (todo) {
       todo.name = payload.name
       todo.description = payload.description
-      todo.dueDate = dayjs(payload.dueDate).format('MMM D, YYYY | hh:mm')
+      todo.dueDate = payload.dueDate
+        ? dayjs(payload.dueDate).format('MMM D, YYYY h:mm A')
+        : ''
     }
   }),
   toggleStatus: action((state, id) => {

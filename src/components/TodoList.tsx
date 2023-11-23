@@ -1,4 +1,4 @@
-import { Flex, Table, Button, Checkbox, Tooltip, Popconfirm } from 'antd'
+import { Flex, Table, Button, Checkbox, Popconfirm } from 'antd'
 import {
   CopyOutlined,
   EditOutlined,
@@ -8,7 +8,7 @@ import {
 } from '@ant-design/icons'
 import { Todo } from '../types'
 import { useStoreState, useStoreActions } from '../store'
-import { CheckboxChangeEvent } from 'antd/es/checkbox'
+// import { CheckboxChangeEvent } from 'antd/es/checkbox'
 
 interface TodoListProps {
   onEdit: (id: string) => void
@@ -76,7 +76,16 @@ const TodoList: React.FC<TodoListProps> = ({ onEdit }) => {
       title: 'Due Date',
       dataIndex: 'dueDate',
       key: 'dueDate',
-      width: '10%'
+      width: '10%',
+      render: (text: string, todo: Todo) => ({
+        props: {
+          style: {
+            color: todo.completed === true ? '#c0c0c0' : 'inherit',
+            textDecoration: todo.completed === true ? 'line-through' : 'none'
+          }
+        },
+        children: <div>{text}</div>
+      })
     },
     {
       title: 'Actions',

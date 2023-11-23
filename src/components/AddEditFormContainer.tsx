@@ -7,7 +7,7 @@ interface AddEditTodoFormProps {
   openModal: boolean
   onCancel: () => void
   onOk: () => void
-  todoToEdit: Todo
+  todoToEdit: Todo | undefined
 }
 
 const AddEditFormContainer: React.FC<AddEditTodoFormProps> = ({

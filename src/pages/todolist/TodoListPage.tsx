@@ -9,7 +9,7 @@ import AddEditFormContainer from '../../components/AddEditFormContainer'
 const TodoListPage: React.FC = () => {
   const [form] = Form.useForm()
   const [openModal, setOpenModal] = useState(false)
-  const [todoToEdit, setTodoToEdit] = useState({} as Todo)
+  const [todoToEdit, setTodoToEdit] = useState<Todo | undefined>(undefined)
 
   const todos = useStoreState((state) => state.todos)
   const addTodo = useStoreActions((actions) => actions.addTodo)
@@ -42,7 +42,9 @@ const TodoListPage: React.FC = () => {
     form.submit()
   }
 
-  const handleFormFinish = (name: string, { values }: { values: Todo }) => {
+  const handleFormFinish = (_name: string, { values }: { values: Todo }) => {
+    // const handleFormFinish = (_name: string, info: FormFinishInfo) => {
+    //   const { values } = info
     if (todoToEdit?.id) {
       editTodo({ ...values, id: todoToEdit.id })
     } else {

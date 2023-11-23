@@ -46,7 +46,7 @@ const AddEditTodoForm: React.FC<AddEditTodoFormProps> = ({
       <Form.Item
         label='Description'
         name='description'
-        rules={[{ required: true, message: 'Please input the description' }]}>
+        rules={[{ required: false, message: 'Please input the description' }]}>
         <Input />
       </Form.Item>
 
