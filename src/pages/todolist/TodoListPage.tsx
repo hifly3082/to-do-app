@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Button, Form } from 'antd'
 
-import { BaseTodo, ExtendedTodo } from '../../types'
+import { Todo } from '../../types'
 import { useStoreActions, useStoreState } from '../../store'
 import TodoList from '../../components/TodoList'
 import AddEditFormContainer from '../../components/AddEditFormContainer'
@@ -9,7 +9,7 @@ import AddEditFormContainer from '../../components/AddEditFormContainer'
 const TodoListPage: React.FC = () => {
   const [form] = Form.useForm()
   const [openModal, setOpenModal] = useState(false)
-  const [todoToEdit, setTodoToEdit] = useState({} as ExtendedTodo)
+  const [todoToEdit, setTodoToEdit] = useState({} as Todo)
 
   const todos = useStoreState((state) => state.todos)
   const addTodo = useStoreActions((actions) => actions.addTodo)
@@ -27,15 +27,14 @@ const TodoListPage: React.FC = () => {
   }
 
   const handleEdit = (id: string) => {
-    const selectedTodo =
-      todos.find((todo) => todo.id === id) || ({} as ExtendedTodo)
+    const selectedTodo = todos.find((todo) => todo.id === id) || ({} as Todo)
     setTodoToEdit(selectedTodo)
     setOpenModal(true)
   }
 
   // const handleCheckboxClick = (id: string) => {
   //   const selectedTodo =
-  //     todos.find((todo) => todo.id === id) || ({} as ExtendedTodo)
+  //     todos.find((todo) => todo.id === id) || ({} as Todo)
   //   setTodoToEdit(selectedTodo)
   // }
 
@@ -43,9 +42,9 @@ const TodoListPage: React.FC = () => {
     form.submit()
   }
 
-  const handleFormFinish = (name: string, { values }: { values: BaseTodo }) => {
-    if (todoToEdit && todoToEdit.id) {
-      editTodo({ todoToEdit, values })
+  const handleFormFinish = (name: string, { values }: { values: Todo }) => {
+    if (todoToEdit?.id) {
+      editTodo({ ...values, id: todoToEdit.id })
     } else {
       addTodo(values)
     }

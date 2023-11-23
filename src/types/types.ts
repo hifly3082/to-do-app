@@ -1,11 +1,9 @@
-export interface BaseTodo {
+export interface Todo {
+  id?: string
   name: string
   description: string
   dueDate: string
-}
-export interface ExtendedTodo extends BaseTodo {
-  id: string
-  completed: boolean
+  completed?: boolean
 }
 
 export const enum RouteNames {

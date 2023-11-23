@@ -1,17 +1,25 @@
-import { Table, Button, Checkbox } from 'antd'
-import { CopyOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons'
-import { ExtendedTodo } from '../types'
+import { Flex, Table, Button, Checkbox, Tooltip, Popconfirm } from 'antd'
+import {
+  CopyOutlined,
+  EditOutlined,
+  DeleteOutlined,
+  CheckOutlined,
+  CloseOutlined
+} from '@ant-design/icons'
+import { Todo } from '../types'
 import { useStoreState, useStoreActions } from '../store'
+import { CheckboxChangeEvent } from 'antd/es/checkbox'
 
 interface TodoListProps {
   onEdit: (id: string) => void
+  // onChange: (e: CheckboxChangeEvent, id: string) => void
 }
 
 const TodoList: React.FC<TodoListProps> = ({ onEdit }) => {
   const todos = useStoreState((state) => state.todos)
   const deleteTodo = useStoreActions((actions) => actions.deleteTodo)
   const copyTodo = useStoreActions((actions) => actions.copyTodo)
-  // const toggleStatus = useStoreActions((actions) => actions.toggleStatus)
+  const toggleStatus = useStoreActions((actions) => actions.toggleStatus)
 
   const handleDelete = (id: string) => {
     deleteTodo(id)
@@ -22,35 +30,47 @@ const TodoList: React.FC<TodoListProps> = ({ onEdit }) => {
   const handleEdit = (id: string) => {
     onEdit(id)
   }
-
-  // const handleToggleCompleted = (id: string, completed: boolean) => {
-  //   toggleStatus(id, completed)
-  // }
+  const handleToggleCompleted = (id: string) => {
+    toggleStatus(id)
+  }
 
   const columns = [
     {
-      title: 'Check Status',
+      title: 'Completed',
       dataIndex: 'completed',
       key: 'completed',
       width: '5%',
-      render: (todo: ExtendedTodo) => (
-        <Checkbox
-          // onChange={(e) => handleToggleCompleted(todo.id, e.target.checked)}
-          checked={todo.completed} // doesn't work
-        />
-      )
+      render: (todo: boolean) => <Checkbox checked={todo} />
     },
     {
       title: 'Name',
       dataIndex: 'name',
       key: 'name',
-      width: '15%'
+      width: '15%',
+      render: (text: string, todo: Todo) => ({
+        props: {
+          style: {
+            color: todo.completed === true ? '#c0c0c0' : 'inherit',
+            textDecoration: todo.completed === true ? 'line-through' : 'none'
+          }
+        },
+        children: <div>{text}</div>
+      })
     },
     {
       title: 'Description',
       dataIndex: 'description',
       key: 'description',
-      width: '40%'
+      width: '40%',
+      render: (text: string, todo: Todo) => ({
+        props: {
+          style: {
+            color: todo.completed === true ? '#c0c0c0' : 'inherit',
+            textDecoration: todo.completed === true ? 'line-through' : 'none'
+          }
+        },
+        children: <div>{text}</div>
+      })
     },
     {
       title: 'Due Date',
@@ -61,23 +81,55 @@ const TodoList: React.FC<TodoListProps> = ({ onEdit }) => {
     {
       title: 'Actions',
       key: 'actions',
-      render: (todo: ExtendedTodo) => (
-        <span>
-          <Button onClick={() => handleEdit(todo.id)}>
-            <EditOutlined />
-          </Button>
-          <Button onClick={() => handleDuplicate(todo.id)}>
-            <CopyOutlined />
-          </Button>
-          <Button onClick={() => handleDelete(todo.id)}>
-            <DeleteOutlined />
-          </Button>
-        </span>
+      render: (todo: Todo) => (
+        <>
+          <Flex gap='small'>
+            {/* <Tooltip title='Edit task'> */}
+            <Button onClick={() => handleEdit(todo.id)}>
+              <EditOutlined />
+            </Button>
+            {/* </Tooltip> */}
+            {/* <Tooltip title='Duplicate task'> */}
+            <Button onClick={() => handleDuplicate(todo.id)}>
+              <CopyOutlined />
+            </Button>
+            {/* </Tooltip> */}
+            <Popconfirm
+              title='Sure to delete?'
+              placement='bottom'
+              onConfirm={() => handleDelete(todo.id)}>
+              {/* <Tooltip title='Delete task'> */}
+              <Button>
+                <DeleteOutlined />
+              </Button>
+              {/* </Tooltip> */}
+            </Popconfirm>
+            <Button
+              type='dashed'
+              onClick={() => {
+                handleToggleCompleted(todo.id)
+              }}>
+              {todo.completed === false ? <CheckOutlined /> : <CloseOutlined />}
+            </Button>
+          </Flex>
+        </>
       )
     }
   ]
 
-  return <Table columns={columns} dataSource={todos} rowKey='id' />
+  return (
+    <Table
+      // rowSelection={{
+      //   type: 'checkbox',
+      //   onSelect: (record) => {
+      //     handleToggleCompleted(record.id)
+      //   }
+      // }}
+      columns={columns}
+      dataSource={todos}
+      rowKey='id'
+    />
+  )
 }
 
 export default TodoList

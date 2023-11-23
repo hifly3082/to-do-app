@@ -1,36 +1,29 @@
 import { createStore, action, persist, Action } from 'easy-peasy'
-import { BaseTodo, ExtendedTodo } from '../types'
+import { Todo } from '../types'
 import { generateId } from '../utilities/helpers'
 import dayjs from 'dayjs'
 
-const todoModel: ExtendedTodo = {
-  id: '',
-  completed: false,
-  name: '',
-  description: '',
-  dueDate: ''
-}
-
 export interface StoreModel {
-  todo: ExtendedTodo
-  todos: ExtendedTodo[]
-  addTodo: Action<StoreModel, BaseTodo>
+  todos: Todo[]
+  addTodo: Action<StoreModel, Todo>
   deleteTodo: Action<StoreModel, string>
   copyTodo: Action<StoreModel, string>
-  editTodo: Action<StoreModel, ExtendedTodo>
+  editTodo: Action<StoreModel, Todo>
   toggleStatus: Action<StoreModel, string>
 }
 
 const storeModel: StoreModel = {
-  todo: todoModel,
   todos: [],
   addTodo: action((state, payload) => {
+    const dueDate = payload.dueDate
+      ? dayjs(payload.dueDate).format('MMM D, YYYY | hh:mm')
+      : ''
     state.todos.push({
       id: generateId(),
       completed: false,
       name: payload.name,
       description: payload.description,
-      dueDate: payload.dueDate
+      dueDate: dueDate
     })
   }),
   deleteTodo: action((state, id) => {
@@ -39,7 +32,7 @@ const storeModel: StoreModel = {
   copyTodo: action((state, id) => {
     const todoToCopy = state.todos.find((todo) => todo.id === id)
     if (todoToCopy) {
-      const newTodo: ExtendedTodo = {
+      const newTodo: Todo = {
         ...todoToCopy,
         id: generateId()
       }
@@ -47,20 +40,16 @@ const storeModel: StoreModel = {
     }
   }),
   editTodo: action((state, payload) => {
-    const { todoToEdit, values } = payload
-    // console.log(`payload`, payload)
-    const todo = state.todos.find((todo) => todo.id === todoToEdit.id)
+    const todo = state.todos.find((todo) => todo.id === payload.id)
     if (todo) {
-      todo.name = values.name
-      todo.description = values.description
-      todo.dueDate = values.dueDate
+      todo.name = payload.name
+      todo.description = payload.description
+      todo.dueDate = dayjs(payload.dueDate).format('MMM D, YYYY | hh:mm')
     }
   }),
-  toggleStatus: action((state, payload) => {
-    const { id, completed } = payload
-    console.log(`payload id`, id)
+  toggleStatus: action((state, id) => {
+    console.log(`toggleStatus action called with id`, id)
     const todo = state.todos.find((todo) => todo.id === id)
-    console.log('Action called with todoId:', id)
     if (todo) {
       todo.completed = !todo.completed
     }

@@ -1,13 +1,13 @@
 import { FormInstance, Modal } from 'antd'
 import AddEditTodoForm from './AddEditTodoForm'
-import { BaseTodo, ExtendedTodo } from '../types'
+import { Todo } from '../types'
 
 interface AddEditTodoFormProps {
-  form: FormInstance<BaseTodo> // not sure
+  form: FormInstance<Todo> // not sure
   openModal: boolean
   onCancel: () => void
   onOk: () => void
-  todoToEdit: ExtendedTodo
+  todoToEdit: Todo
 }
 
 const AddEditFormContainer: React.FC<AddEditTodoFormProps> = ({

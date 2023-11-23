@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { Input, DatePicker, Form, FormInstance } from 'antd'
 
-import { BaseTodo } from '../types'
+import { Todo } from '../types'
 import dayjs from 'dayjs'
 
 const layout = {
@@ -10,7 +10,7 @@ const layout = {
 }
 
 interface AddEditTodoFormProps {
-  initialValues?: BaseTodo
+  initialValues?: Todo
   form: FormInstance
 }
 
@@ -22,7 +22,9 @@ const AddEditTodoForm: React.FC<AddEditTodoFormProps> = ({
     form.setFieldsValue({
       name: initialValues?.name,
       description: initialValues?.description,
-      dueDate: dayjs(initialValues?.dueDate)
+      dueDate: initialValues?.dueDate
+        ? dayjs(initialValues?.dueDate, 'MMM D, YYYY | hh:mm')
+        : ''
     })
   }, [initialValues, form])
 
@@ -30,7 +32,10 @@ const AddEditTodoForm: React.FC<AddEditTodoFormProps> = ({
     <Form
       {...layout}
       form={form}
-      initialValues={{ ...initialValues, dueDate: '' }}>
+      initialValues={{
+        ...initialValues,
+        dueDate: dayjs(initialValues?.dueDate, 'MMM D, YYYY | hh:mm')
+      }}>
       <Form.Item
         label='Name'
         name='name'
