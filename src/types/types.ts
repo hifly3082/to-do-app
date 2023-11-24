@@ -1,8 +1,8 @@
 export interface Todo {
   id?: string
   name: string
-  description: string
-  dueDate: string
+  description?: string
+  dueDate?: string | null
   completed?: boolean
 }
 

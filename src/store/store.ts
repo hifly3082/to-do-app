@@ -1,7 +1,6 @@
 import { createStore, action, persist, Action } from 'easy-peasy'
 import { Todo } from '../types'
 import { generateId } from '../utilities/helpers'
-import dayjs from 'dayjs'
 
 export interface StoreModel {
   todos: Todo[]
@@ -15,25 +14,22 @@ export interface StoreModel {
 const storeModel: StoreModel = {
   todos: [],
   addTodo: action((state, payload) => {
-    const dueDate = payload.dueDate
-      ? dayjs(payload.dueDate).format('MMM D, YYYY | hh:mm')
-      : ''
     state.todos.push({
       id: generateId(),
       completed: false,
       name: payload.name,
       description: payload.description,
-      dueDate: dueDate
+      dueDate: payload.dueDate ? payload.dueDate : null
     })
   }),
   deleteTodo: action((state, id) => {
     state.todos = state.todos.filter((todo) => todo.id !== id)
   }),
   copyTodo: action((state, id) => {
-    const todoToCopy = state.todos.find((todo) => todo.id === id)
-    if (todoToCopy) {
+    const todo = state.todos.find((todo) => todo.id === id)
+    if (todo) {
       const newTodo: Todo = {
-        ...todoToCopy,
+        ...todo,
         id: generateId()
       }
       state.todos.push(newTodo)
@@ -44,9 +40,7 @@ const storeModel: StoreModel = {
     if (todo) {
       todo.name = payload.name
       todo.description = payload.description
-      todo.dueDate = payload.dueDate
-        ? dayjs(payload.dueDate).format('MMM D, YYYY h:mm A')
-        : ''
+      todo.dueDate = payload.dueDate ? payload.dueDate : null
     }
   }),
   toggleStatus: action((state, id) => {

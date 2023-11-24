@@ -1,64 +1,57 @@
 import { useEffect } from 'react'
 import { Input, DatePicker, Form, FormInstance } from 'antd'
+import dayjs from 'dayjs'
 
 import { Todo } from '../types'
-import dayjs from 'dayjs'
+
+interface AddEditTodoFormProps {
+  todoToEdit?: Todo
+  form: FormInstance
+}
 
 const layout = {
   labelCol: { span: 6 },
   wrapperCol: { span: 14 }
 }
 
-interface AddEditTodoFormProps {
-  initialValues?: Todo
-  form: FormInstance
-}
+const dateFormat = 'MMM D, YYYY HH:mm'
 
 const AddEditTodoForm: React.FC<AddEditTodoFormProps> = ({
   form,
-  initialValues
+  todoToEdit
 }) => {
-  useEffect(() => {
-    form.setFieldsValue({
-      name: initialValues?.name,
-      description: initialValues?.description,
-      dueDate: initialValues?.dueDate
-        ? dayjs(initialValues?.dueDate, 'MMM D, YYYY | hh:mm')
-        : ''
-    })
-  }, [initialValues, form])
+  // useEffect(() => {
+  //   // console.log(`initialValues`, initialValues)
+  //   form.setFieldsValue({
+  //     name: initialValues?.name,
+  //     description: initialValues?.description,
+  //     dueDate: initialValues?.dueDate ? dayjs(initialValues?.dueDate) : null
+  //   })
+  // }, [initialValues, form])
 
   return (
     <Form
       {...layout}
       form={form}
-      initialValues={{
-        ...initialValues,
-        dueDate: dayjs(initialValues?.dueDate, 'MMM D, YYYY | hh:mm')
-      }}>
+      // initialValues={todoToEdit}
+      // initialValues={{
+      //   ...todoToEdit,
+      //   dueDate: initialValues?.dueDate || null
+      // }}
+    >
       <Form.Item
         label='Name'
         name='name'
-        rules={[{ required: true, message: 'Please input the name' }]}>
+        rules={[{ required: true, message: 'Please input the task name' }]}>
         <Input />
       </Form.Item>
 
-      <Form.Item
-        label='Description'
-        name='description'
-        rules={[{ required: false, message: 'Please input the description' }]}>
+      <Form.Item label='Description' name='description'>
         <Input />
       </Form.Item>
 
-      <Form.Item
-        label='Due Date'
-        name='dueDate'
-        rules={[{ required: false, message: 'Please select the due date' }]}>
-        <DatePicker
-          showTime
-          format='DD-MM-YYYY, HH:mm'
-          style={{ width: '100%' }}
-        />
+      <Form.Item label='Due Date' name='dueDate'>
+        <DatePicker showTime format={dateFormat} style={{ width: '100%' }} />
       </Form.Item>
     </Form>
   )

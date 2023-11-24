@@ -1,4 +1,4 @@
-import { Flex, Table, Button, Checkbox, Popconfirm } from 'antd'
+import { Flex, Table, Button, Checkbox, Popconfirm, Descriptions } from 'antd'
 import {
   CopyOutlined,
   EditOutlined,
@@ -6,13 +6,13 @@ import {
   CheckOutlined,
   CloseOutlined
 } from '@ant-design/icons'
+
 import { Todo } from '../types'
 import { useStoreState, useStoreActions } from '../store'
-// import { CheckboxChangeEvent } from 'antd/es/checkbox'
+import dayjs from 'dayjs'
 
 interface TodoListProps {
   onEdit: (id: string) => void
-  // onChange: (e: CheckboxChangeEvent, id: string) => void
 }
 
 const TodoList: React.FC<TodoListProps> = ({ onEdit }) => {
@@ -21,110 +21,99 @@ const TodoList: React.FC<TodoListProps> = ({ onEdit }) => {
   const copyTodo = useStoreActions((actions) => actions.copyTodo)
   const toggleStatus = useStoreActions((actions) => actions.toggleStatus)
 
-  const handleDelete = (id: string) => {
-    deleteTodo(id)
+  const handleDelete = (id?: string) => () => {
+    id && deleteTodo(id)
   }
-  const handleDuplicate = (id: string) => {
-    copyTodo(id)
+  const handleDuplicate = (id?: string) => () => {
+    id && copyTodo(id)
   }
-  const handleEdit = (id: string) => {
-    onEdit(id)
+  const handleEdit = (id?: string) => () => {
+    id && onEdit(id)
   }
-  const handleToggleCompleted = (id: string) => {
-    toggleStatus(id)
+  const handleToggleCompleted = (id?: string) => () => {
+    id && toggleStatus(id)
   }
 
   const columns = [
     {
       title: 'Completed',
-      dataIndex: 'completed',
+      dataIndex: '',
       key: 'completed',
-      width: '5%',
-      render: (todo: boolean) => <Checkbox checked={todo} />
+      onCell: (todo: Todo) => ({
+        onClick: handleToggleCompleted(todo.id)
+      }),
+      render: (todo: Todo) => (
+        <Flex justify='center'>
+          <Checkbox checked={todo.completed} />
+        </Flex>
+      )
     },
     {
       title: 'Name',
       dataIndex: 'name',
       key: 'name',
-      width: '15%',
-      render: (text: string, todo: Todo) => ({
-        props: {
-          style: {
-            color: todo.completed === true ? '#c0c0c0' : 'inherit',
-            textDecoration: todo.completed === true ? 'line-through' : 'none'
-          }
-        },
-        children: <div>{text}</div>
-      })
-    },
-    {
-      title: 'Description',
-      dataIndex: 'description',
-      key: 'description',
-      width: '40%',
-      render: (text: string, todo: Todo) => ({
-        props: {
-          style: {
-            color: todo.completed === true ? '#c0c0c0' : 'inherit',
-            textDecoration: todo.completed === true ? 'line-through' : 'none'
-          }
-        },
-        children: <div>{text}</div>
-      })
+      width: '50%',
+      onCell: (todo: Todo) => ({
+        style: {
+          color: todo.completed ? '#c0c0c0' : 'inherit',
+          textDecoration: todo.completed ? 'line-through' : 'none'
+        }
+      }),
+      render: (text: string) => <div>{text}</div>
     },
     {
       title: 'Due Date',
       dataIndex: 'dueDate',
       key: 'dueDate',
-      width: '10%',
-      render: (text: string, todo: Todo) => ({
-        props: {
-          style: {
-            color: todo.completed === true ? '#c0c0c0' : 'inherit',
-            textDecoration: todo.completed === true ? 'line-through' : 'none'
-          }
-        },
-        children: <div>{text}</div>
-      })
+      width: '20%',
+      // sorter: (a: string, b: string) =>
+      //   moment(a.dueDate).isValid() - moment(b.dueDate).isValid(),
+      // dayjs(a.dueDate).isBefore(dayjs(b.dueDate)),
+      // new Date(a.dueDate) - new Date(b.dueDate),
+      // dayjs(a.dueDate) - dayjs(b.dueDate),
+      onCell: (todo: Todo) => ({
+        style: {
+          color: todo.completed ? '#c0c0c0' : 'inherit',
+          textDecoration: todo.completed ? 'line-through' : 'none'
+        }
+      }),
+      render: (text: string) => (
+        <div>{text && dayjs(text).format('MMM D, YYYY HH:mm')}</div>
+      )
     },
     {
       title: 'Actions',
       key: 'actions',
+      width: '',
       render: (todo: Todo) => (
-        <>
-          <Flex gap='small'>
-            {/* <Tooltip title='Edit task'> */}
-            <Button onClick={() => handleEdit(todo.id)}>
-              <EditOutlined />
+        <Flex gap='small'>
+          <Button onClick={handleEdit(todo.id)}>
+            <EditOutlined />
+          </Button>
+          <Button onClick={handleDuplicate(todo.id)}>
+            <CopyOutlined />
+          </Button>
+          <Popconfirm
+            title='Confirm delete?'
+            placement='bottom'
+            onConfirm={handleDelete(todo.id)}>
+            <Button>
+              <DeleteOutlined />
             </Button>
-            {/* </Tooltip> */}
-            {/* <Tooltip title='Duplicate task'> */}
-            <Button onClick={() => handleDuplicate(todo.id)}>
-              <CopyOutlined />
-            </Button>
-            {/* </Tooltip> */}
-            <Popconfirm
-              title='Sure to delete?'
-              placement='bottom'
-              onConfirm={() => handleDelete(todo.id)}>
-              {/* <Tooltip title='Delete task'> */}
-              <Button>
-                <DeleteOutlined />
-              </Button>
-              {/* </Tooltip> */}
-            </Popconfirm>
-            <Button
-              type='dashed'
-              onClick={() => {
-                handleToggleCompleted(todo.id)
-              }}>
-              {todo.completed === false ? <CheckOutlined /> : <CloseOutlined />}
-            </Button>
-          </Flex>
-        </>
+          </Popconfirm>
+        </Flex>
       )
     }
   ]
+
+  const expandable = {
+    expandedRowRender: (todo: Todo) => (
+      <Descriptions>
+        <Descriptions.Item>{todo.description}</Descriptions.Item>
+      </Descriptions>
+    ),
+    rowExpandable: (todo: Todo) => todo.description
+  }
 
   return (
     <Table
@@ -134,6 +123,7 @@ const TodoList: React.FC<TodoListProps> = ({ onEdit }) => {
       //     handleToggleCompleted(record.id)
       //   }
       // }}
+      expandable={expandable}
       columns={columns}
       dataSource={todos}
       rowKey='id'

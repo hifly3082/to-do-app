@@ -5,6 +5,7 @@ import { Todo } from '../../types'
 import { useStoreActions, useStoreState } from '../../store'
 import TodoList from '../../components/TodoList'
 import AddEditFormContainer from '../../components/AddEditFormContainer'
+import dayjs from 'dayjs'
 
 const TodoListPage: React.FC = () => {
   const [form] = Form.useForm()
@@ -14,7 +15,6 @@ const TodoListPage: React.FC = () => {
   const todos = useStoreState((state) => state.todos)
   const addTodo = useStoreActions((actions) => actions.addTodo)
   const editTodo = useStoreActions((actions) => actions.editTodo)
-  // const toggleStatus = useStoreActions((actions) => actions.toggleStatus)
 
   const handleOpenModal = () => {
     setOpenModal(true)
@@ -30,28 +30,27 @@ const TodoListPage: React.FC = () => {
     const selectedTodo = todos.find((todo) => todo.id === id) || ({} as Todo)
     setTodoToEdit(selectedTodo)
     setOpenModal(true)
-  }
 
-  // const handleCheckboxClick = (id: string) => {
-  //   const selectedTodo =
-  //     todos.find((todo) => todo.id === id) || ({} as Todo)
-  //   setTodoToEdit(selectedTodo)
-  // }
+    form.setFieldsValue({
+      name: selectedTodo.name,
+      description: selectedTodo.description,
+      dueDate: selectedTodo.dueDate ? dayjs(selectedTodo.dueDate) : null
+    })
+  }
 
   const handleOk = () => {
     form.submit()
   }
 
   const handleFormFinish = (_name: string, { values }: { values: Todo }) => {
-    // const handleFormFinish = (_name: string, info: FormFinishInfo) => {
-    //   const { values } = info
     if (todoToEdit?.id) {
       editTodo({ ...values, id: todoToEdit.id })
     } else {
       addTodo(values)
     }
-    form.resetFields()
     setOpenModal(false)
+    setTodoToEdit(undefined)
+    form.resetFields()
   }
 
   return (
@@ -67,7 +66,7 @@ const TodoListPage: React.FC = () => {
         />
       </Form.Provider>
       <Button type='primary' onClick={handleOpenModal}>
-        Add Task
+        Add new task
       </Button>
     </>
   )

@@ -17,18 +17,18 @@ const AddEditFormContainer: React.FC<AddEditTodoFormProps> = ({
   onOk,
   todoToEdit
 }) => {
-  const formTitle = todoToEdit ? 'Edit task' : 'Add new task'
-  const okText = todoToEdit ? 'Confirm' : 'Add'
+  const formTitle = todoToEdit?.id ? 'Edit task' : 'Add new task'
+  const okText = todoToEdit?.id ? 'Confirm' : 'Add'
 
   return (
     <Modal
+      destroyOnClose
       open={openModal}
       onCancel={onCancel}
       onOk={onOk}
       title={formTitle}
-      okText={okText}
-      cancelText='Cancel'>
-      <AddEditTodoForm form={form} initialValues={todoToEdit} />
+      okText={okText}>
+      <AddEditTodoForm form={form} todoToEdit={todoToEdit} />
     </Modal>
   )
 }
