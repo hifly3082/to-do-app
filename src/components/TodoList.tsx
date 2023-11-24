@@ -10,6 +10,7 @@ import {
 import { Todo } from '../types'
 import { useStoreState, useStoreActions } from '../store'
 import dayjs from 'dayjs'
+import moment from 'moment'
 
 interface TodoListProps {
   onEdit: (id: string) => void
@@ -39,6 +40,7 @@ const TodoList: React.FC<TodoListProps> = ({ onEdit }) => {
       title: 'Completed',
       dataIndex: '',
       key: 'completed',
+      width: '5%',
       onCell: (todo: Todo) => ({
         onClick: handleToggleCompleted(todo.id)
       }),
@@ -66,11 +68,8 @@ const TodoList: React.FC<TodoListProps> = ({ onEdit }) => {
       dataIndex: 'dueDate',
       key: 'dueDate',
       width: '20%',
-      // sorter: (a: string, b: string) =>
-      //   moment(a.dueDate).isValid() - moment(b.dueDate).isValid(),
-      // dayjs(a.dueDate).isBefore(dayjs(b.dueDate)),
-      // new Date(a.dueDate) - new Date(b.dueDate),
-      // dayjs(a.dueDate) - dayjs(b.dueDate),
+      sorter: (a: string, b: string) =>
+        new Date(a.dueDate) - new Date(b.dueDate),
       onCell: (todo: Todo) => ({
         style: {
           color: todo.completed ? '#c0c0c0' : 'inherit',
@@ -108,8 +107,15 @@ const TodoList: React.FC<TodoListProps> = ({ onEdit }) => {
 
   const expandable = {
     expandedRowRender: (todo: Todo) => (
-      <Descriptions>
-        <Descriptions.Item>{todo.description}</Descriptions.Item>
+      <Descriptions
+        style={{
+          marginLeft: '5rem',
+          color: todo.completed ? '#c0c0c0' : 'inherit',
+          textDecoration: todo.completed ? 'line-through' : 'none'
+        }}>
+        <Descriptions.Item label='Description'>
+          {todo.description}
+        </Descriptions.Item>
       </Descriptions>
     ),
     rowExpandable: (todo: Todo) => todo.description
