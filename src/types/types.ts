@@ -7,6 +7,7 @@ export interface Todo {
 }
 
 export const enum RouteNames {
+  Login = 'login',
   Lists = 'lists',
   Todo = 'lists/todo',
   Account = 'account',
