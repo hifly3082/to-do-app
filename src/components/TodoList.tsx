@@ -11,6 +11,7 @@ import { Todo } from '../types'
 import { useStoreState, useStoreActions } from '../store'
 import dayjs from 'dayjs'
 import moment from 'moment'
+import { dateFormat } from './AddEditTodoForm'
 
 interface TodoListProps {
   onEdit: (id: string) => void
@@ -68,8 +69,21 @@ const TodoList: React.FC<TodoListProps> = ({ onEdit }) => {
       dataIndex: 'dueDate',
       key: 'dueDate',
       width: '20%',
-      sorter: (a: string, b: string) =>
-        new Date(a.dueDate) - new Date(b.dueDate),
+      sorter: (a: Todo, b: Todo) => {
+        const dateA = a.dueDate ? dayjs(a.dueDate).$d : null
+        const dateB = b.dueDate ? dayjs(b.dueDate).$d : null
+
+        if (dateA === null && dateB === null) {
+          return 0
+        }
+        if (dateA === null) {
+          return 1
+        }
+        if (dateB === null) {
+          return -1
+        }
+        return dateA - dateB
+      },
       onCell: (todo: Todo) => ({
         style: {
           color: todo.completed ? '#c0c0c0' : 'inherit',
@@ -77,13 +91,12 @@ const TodoList: React.FC<TodoListProps> = ({ onEdit }) => {
         }
       }),
       render: (text: string) => (
-        <div>{text && dayjs(text).format('MMM D, YYYY HH:mm')}</div>
+        <div>{text && dayjs(text).format(dateFormat)}</div>
       )
     },
     {
       title: 'Actions',
       key: 'actions',
-      width: '',
       render: (todo: Todo) => (
         <Flex gap='small'>
           <Button onClick={handleEdit(todo.id)}>

@@ -5,7 +5,6 @@ import { Todo } from '../../types'
 import { useStoreActions, useStoreState } from '../../store'
 import TodoList from '../../components/TodoList'
 import AddEditFormContainer from '../../components/AddEditFormContainer'
-import dayjs from 'dayjs'
 
 const TodoListPage: React.FC = () => {
   const [form] = Form.useForm()
@@ -30,12 +29,6 @@ const TodoListPage: React.FC = () => {
     const selectedTodo = todos.find((todo) => todo.id === id) || ({} as Todo)
     setTodoToEdit(selectedTodo)
     setOpenModal(true)
-
-    form.setFieldsValue({
-      name: selectedTodo.name,
-      description: selectedTodo.description,
-      dueDate: selectedTodo.dueDate ? dayjs(selectedTodo.dueDate) : null
-    })
   }
 
   const handleOk = () => {

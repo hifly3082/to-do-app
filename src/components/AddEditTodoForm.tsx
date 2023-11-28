@@ -14,31 +14,22 @@ const layout = {
   wrapperCol: { span: 14 }
 }
 
-const dateFormat = 'MMM D, YYYY HH:mm'
+export const dateFormat = 'MMM D, YYYY HH:mm'
 
 const AddEditTodoForm: React.FC<AddEditTodoFormProps> = ({
   form,
   todoToEdit
 }) => {
-  // useEffect(() => {
-  //   // console.log(`initialValues`, initialValues)
-  //   form.setFieldsValue({
-  //     name: initialValues?.name,
-  //     description: initialValues?.description,
-  //     dueDate: initialValues?.dueDate ? dayjs(initialValues?.dueDate) : null
-  //   })
-  // }, [initialValues, form])
+  useEffect(() => {
+    form.setFieldsValue({
+      name: todoToEdit?.name,
+      description: todoToEdit?.description,
+      dueDate: todoToEdit?.dueDate ? dayjs(todoToEdit?.dueDate) : null
+    })
+  }, [todoToEdit, form])
 
   return (
-    <Form
-      {...layout}
-      form={form}
-      // initialValues={todoToEdit}
-      // initialValues={{
-      //   ...todoToEdit,
-      //   dueDate: initialValues?.dueDate || null
-      // }}
-    >
+    <Form {...layout} form={form}>
       <Form.Item
         label='Name'
         name='name'

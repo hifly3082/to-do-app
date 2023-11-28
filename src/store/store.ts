@@ -19,7 +19,7 @@ const storeModel: StoreModel = {
       completed: false,
       name: payload.name,
       description: payload.description,
-      dueDate: payload.dueDate ? payload.dueDate : null
+      dueDate: payload.dueDate || null
     })
   }),
   deleteTodo: action((state, id) => {
@@ -40,7 +40,7 @@ const storeModel: StoreModel = {
     if (todo) {
       todo.name = payload.name
       todo.description = payload.description
-      todo.dueDate = payload.dueDate ? payload.dueDate : null
+      todo.dueDate = payload.dueDate || null
     }
   }),
   toggleStatus: action((state, id) => {
