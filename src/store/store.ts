@@ -3,6 +3,9 @@ import { Todo } from '../types'
 import { generateId } from '../utilities/helpers'
 
 export interface StoreModel {
+  authorized: boolean
+  setAuthorized: Action<StoreModel, boolean>
+  setUnauthorized: Action<StoreModel, boolean>
   todos: Todo[]
   addTodo: Action<StoreModel, Todo>
   deleteTodo: Action<StoreModel, string>
@@ -12,6 +15,13 @@ export interface StoreModel {
 }
 
 const storeModel: StoreModel = {
+  authorized: false,
+  setAuthorized: action((state, payload) => {
+    state.authorized = true
+  }),
+  setUnauthorized: action((state, payload) => {
+    state.authorized = false
+  }),
   todos: [],
   addTodo: action((state, payload) => {
     state.todos.push({

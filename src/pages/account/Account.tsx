@@ -1,13 +1,4 @@
-import {
-  Avatar,
-  Col,
-  Typography,
-  Descriptions,
-  Row,
-  Flex,
-  Progress,
-  Space
-} from 'antd'
+import { Avatar, Col, Typography, Descriptions, Row, Progress } from 'antd'
 import type { DescriptionsProps } from 'antd'
 
 const { Title } = Typography
@@ -29,7 +20,7 @@ const items: DescriptionsProps['items'] = [
 ]
 
 const Account: React.FC = () => (
-  <Row justify='left' align='middle'>
+  <Row align='middle'>
     <Col span={4} offset={1}>
       <Title level={2}>Username</Title>
       <Avatar
