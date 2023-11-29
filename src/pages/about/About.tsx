@@ -1,4 +1,4 @@
-import { Typography, Row, Col, Card, Button } from 'antd'
+import { Typography, Row, Col, Card, Button, Divider } from 'antd'
 import { DownloadOutlined } from '@ant-design/icons'
 
 const { Title, Paragraph } = Typography
@@ -22,7 +22,8 @@ const About = () => {
               Get Started
             </Button>
           </Card>
-
+        </Col>
+        <Col span={8}>
           <Card>
             <Title level={2}>Our Mission</Title>
             <Paragraph>
@@ -34,7 +35,11 @@ const About = () => {
             </Paragraph>
           </Card>
         </Col>
+      </Row>
 
+      <Divider />
+
+      <Row>
         <Col span={8}>
           <Card>
             <Title level={2}>Why Todo app?</Title>
@@ -72,6 +77,9 @@ const About = () => {
               </ul>
             </Paragraph>
           </Card>
+        </Col>
+
+        <Col span={8}>
           <Card>
             <Title level={2}>Who We Are</Title>
             <Paragraph>

@@ -7,8 +7,8 @@ import {
   CloseOutlined
 } from '@ant-design/icons'
 
-import { Todo } from '../types'
-import { useStoreState, useStoreActions } from '../store'
+import { Todo } from '../../../types'
+import { useStoreState, useStoreActions } from '../../../store'
 import dayjs from 'dayjs'
 import { dateFormat } from './AddEditTodoForm'
 
@@ -71,6 +71,11 @@ const TodoList: React.FC<TodoListProps> = ({ onEdit }) => {
       sorter: (a: Todo, b: Todo) => {
         const dateA = a.dueDate && dayjs(a.dueDate)
         const dateB = b.dueDate && dayjs(b.dueDate)
+        // console.log(
+        //   dayjs(a.dueDate ?? '1900-01-01T00:00:00.000Z').isBefore(
+        //     dayjs(b.dueDate ?? '1900-01-01T00:00:00.000Z')
+        //   )
+        // )
 
         // ONLY SHORT TERNARY EXPRESSION WORKS WITHOUT TS PROBLEMS. IT ALSO DOESN'T NEED ANY TYPE CHECKS OVER NULL OR UNDEFINED
 
@@ -90,7 +95,11 @@ const TodoList: React.FC<TodoListProps> = ({ onEdit }) => {
         // return new Date(a.dueDate) - new Date(b.dueDate)
 
         // DOESNT'T WORK
-        // return dayjs(a.dueDate).isBefore(dayjs(b.dueDate)) ? -1 : 1
+        // return dayjs(a.dueDate ?? '1900-01-01T00:00:00.000Z').isBefore(
+        //   dayjs(b.dueDate ?? '1900-01-01T00:00:00.000Z')
+        // )
+        //   ? -1
+        //   : 1
 
         // NEITHER DAYJS OR DATE CONSTRUCTOR WORKS WITH EMPTY STRINGS OR NULL SO WE NEED TO PERFORM CHECK
 

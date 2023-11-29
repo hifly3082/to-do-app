@@ -1,8 +1,8 @@
 import { Tabs, Card, Row } from 'antd'
 import type { TabsProps } from 'antd'
 
-import LogIn from './LogIn'
-import SignUp from './SignUp'
+import LogIn from './components/LogIn'
+import SignUp from './components/SignUp'
 
 const items: TabsProps['items'] = [
   {

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Button, Checkbox, Form, Input, Row } from 'antd'
 import { LoginOutlined } from '@ant-design/icons'
-import { useStoreActions } from '../../store'
+import { useStoreActions } from '../../../store'
 
 const LogIn = () => {
   const [email, setEmail] = useState('example@gmail.com')

@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { Input, DatePicker, Form, FormInstance } from 'antd'
 import dayjs from 'dayjs'
 
-import { Todo } from '../types'
+import { Todo } from '../../../types'
 
 interface AddEditTodoFormProps {
   todoToEdit?: Todo

@@ -1,6 +1,6 @@
 import { FormInstance, Modal } from 'antd'
 import AddEditTodoForm from './AddEditTodoForm'
-import { Todo } from '../types'
+import { Todo } from '../../../types'
 
 interface AddEditTodoFormProps {
   form: FormInstance<Todo> // not sure

@@ -6,7 +6,7 @@ import {
   UserOutlined,
   SecurityScanOutlined
 } from '@ant-design/icons'
-import { RouteNames } from '../types'
+import { RouteNames } from '../../types'
 
 type MenuItem = Required<MenuProps>['items'][number]
 
@@ -47,7 +47,7 @@ const NavMenu = () => {
 
   return (
     <Menu
-      theme='dark'
+      theme='light'
       mode='inline'
       defaultSelectedKeys={[RouteNames.Todo]}
       selectedKeys={[location.pathname]}
