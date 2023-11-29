@@ -1,13 +1,15 @@
 import { createStore, action, persist, Action } from 'easy-peasy'
-import { Todo } from '../types'
+import { Todo, User } from '../types'
 import { generateId } from '../utilities/helpers'
 
 export interface StoreModel {
-  authorized: boolean
-  setAuthorized: Action<StoreModel, boolean>
-  setUnauthorized: Action<StoreModel, boolean>
+  isAuthenticated: boolean
+  user: User | null
+  login: Action<StoreModel, boolean>
+  logout: Action<StoreModel, boolean>
   todos: Todo[]
   addTodo: Action<StoreModel, Todo>
+  loadData: Action<StoreModel, Todo[]>
   deleteTodo: Action<StoreModel, string>
   copyTodo: Action<StoreModel, string>
   editTodo: Action<StoreModel, Todo>
@@ -15,12 +17,15 @@ export interface StoreModel {
 }
 
 const storeModel: StoreModel = {
-  authorized: false,
-  setAuthorized: action((state, payload) => {
-    state.authorized = true
+  isAuthenticated: false,
+  user: null,
+  login: action((state) => {
+    state.isAuthenticated = true
+    // state.user = payload
   }),
-  setUnauthorized: action((state, payload) => {
-    state.authorized = false
+  logout: action((state) => {
+    state.isAuthenticated = false
+    // state.user = null
   }),
   todos: [],
   addTodo: action((state, payload) => {
@@ -31,6 +36,13 @@ const storeModel: StoreModel = {
       description: payload.description,
       dueDate: payload.dueDate || null
     })
+  }),
+  loadData: action((state, payload) => {
+    if (Array.isArray(payload)) {
+      payload.forEach((item) => {
+        state.todos.push(item)
+      })
+    }
   }),
   deleteTodo: action((state, id) => {
     state.todos = state.todos.filter((todo) => todo.id !== id)

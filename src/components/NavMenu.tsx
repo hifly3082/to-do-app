@@ -26,10 +26,9 @@ function getItem(
 
 const items: MenuItem[] = [
   getItem(
-    <Link to={`/${RouteNames.Lists}`}>User lists</Link>,
-    `/${RouteNames.Lists}`,
-    <UnorderedListOutlined />,
-    [getItem(<Link to={`/${RouteNames.Todo}`}>To do</Link>, RouteNames.Todo)]
+    <Link to={`/${RouteNames.Todo}`}>To do list</Link>,
+    `/${RouteNames.Todo}`,
+    <UnorderedListOutlined />
   ),
   getItem(
     <Link to={`/${RouteNames.Account}`}>Account</Link>,
@@ -50,7 +49,7 @@ const NavMenu = () => {
     <Menu
       theme='dark'
       mode='inline'
-      defaultSelectedKeys={[RouteNames.About]}
+      defaultSelectedKeys={[RouteNames.Todo]}
       selectedKeys={[location.pathname]}
       items={items}
     />

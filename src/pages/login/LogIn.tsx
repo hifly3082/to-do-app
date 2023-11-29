@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Button, Checkbox, Form, Input, Row } from 'antd'
 import { LoginOutlined } from '@ant-design/icons'
+import { useStoreActions } from '../../store'
 
 const LogIn = () => {
   const [email, setEmail] = useState('example@gmail.com')
@@ -9,11 +10,18 @@ const LogIn = () => {
   const [form] = Form.useForm()
   const navigate = useNavigate()
 
+  const login = useStoreActions((actions) => actions.login)
+
   const onFinish = async (values) => {
     try {
       form.resetFields()
       navigate('/')
+      login()
     } catch (error) {}
+  }
+
+  const handleClick = () => {
+    form.submit()
   }
 
   return (
@@ -31,16 +39,17 @@ const LogIn = () => {
           label='Email address'
           labelCol={{ span: 24 }}
           wrapperCol={{ span: 24 }}
-          rules={[
-            {
-              required: true,
-              message: 'Please input your email.'
-            },
-            {
-              type: 'email',
-              message: 'Your email is invalid.'
-            }
-          ]}>
+          // rules={[
+          //   {
+          //     required: true,
+          //     message: 'Please input your email.'
+          //   },
+          //   {
+          //     type: 'email',
+          //     message: 'Your email is invalid.'
+          //   }
+          // ]}
+        >
           <Input placeholder='Email' size='large' autoComplete='off' />
         </Form.Item>
 
@@ -50,13 +59,14 @@ const LogIn = () => {
           label='Password'
           labelCol={{ span: 24 }}
           wrapperCol={{ span: 24 }}
-          rules={[
-            {
-              required: true,
-              message: 'Please input your password.'
-            },
-            { min: 6, message: 'Password must be minimum 6 characters.' }
-          ]}>
+          // rules={[
+          //   {
+          //     required: true,
+          //     message: 'Please input your password.'
+          //   },
+          //   { min: 6, message: 'Password must be minimum 6 characters.' }
+          // ]}
+        >
           <Input.Password
             placeholder='Password'
             size='large'
@@ -76,7 +86,8 @@ const LogIn = () => {
             type='primary'
             htmlType='submit'
             icon={<LoginOutlined />}
-            size='large'>
+            size='large'
+            onClick={handleClick}>
             Log In
           </Button>
         </Row>

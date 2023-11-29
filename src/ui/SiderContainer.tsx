@@ -1,18 +1,22 @@
 import { useState } from 'react'
-
 import Sider from 'antd/es/layout/Sider'
+
 import NavMenu from '../components/NavMenu'
+import { useStoreState } from '../store'
 
 const SiderContainer = () => {
   const [collapsed, setCollapsed] = useState(false)
+  const isAuthenticated = useStoreState((state) => state.isAuthenticated)
 
   return (
-    <Sider
-      collapsible
-      collapsed={collapsed}
-      onCollapse={(value) => setCollapsed(value)}>
-      <NavMenu />
-    </Sider>
+    isAuthenticated && (
+      <Sider
+        collapsible
+        collapsed={collapsed}
+        onCollapse={(value) => setCollapsed(value)}>
+        <NavMenu />
+      </Sider>
+    )
   )
 }
 export default SiderContainer

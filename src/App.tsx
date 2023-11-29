@@ -8,11 +8,13 @@ import {
 } from 'react-router-dom'
 
 import { RouteNames } from './types'
+import ProtectedRoute from './pages/ProtectedRoute'
 import AppLayout from './ui/AppLayout'
 import About from './pages/about/About'
 import Account from './pages/account/Account'
 import TodoListPage from './pages/todolist/TodoListPage'
 import LoginPage from './pages/login/LoginPage'
+import PageNotFound from './pages/PageNotFound'
 import './App.css'
 
 const router = createBrowserRouter(
@@ -24,11 +26,14 @@ const router = createBrowserRouter(
           <Outlet />
         </AppLayout>
       }>
-      <Route index element={<Navigate to={RouteNames.Todo} replace={true} />} />
-      <Route path={RouteNames.Todo} element={<LoginPage />} />
-      <Route path={RouteNames.Todo} element={<TodoListPage />} />
+      <Route element={<ProtectedRoute />}>
+        <Route path={RouteNames.Account} element={<Account />} />
+        <Route path={RouteNames.Todo} element={<TodoListPage />} />
+        <Route index element={<Navigate replace to={RouteNames.Todo} />} />
+      </Route>
+      <Route path={RouteNames.Login} element={<LoginPage />} />
       <Route path={RouteNames.About} element={<About />} />
-      <Route path={RouteNames.Account} element={<Account />} />
+      <Route path='*' element={<PageNotFound />} />
     </Route>
   )
 )
