@@ -160,11 +160,15 @@ const TodoList: React.FC<TodoListProps> = ({ onEdit }) => {
     expandedRowRender: (todo: Todo) => (
       <Descriptions
         style={{
-          marginLeft: '5rem',
+          marginLeft: '10rem',
           color: todo.completed ? '#c0c0c0' : 'inherit',
           textDecoration: todo.completed ? 'line-through' : 'none'
         }}>
-        <Descriptions.Item label='Description'>
+        <Descriptions.Item
+          contentStyle={{
+            color: todo.completed ? '#c0c0c0' : 'inherit',
+            textDecoration: todo.completed ? 'line-through' : 'none'
+          }}>
           {todo.description}
         </Descriptions.Item>
       </Descriptions>
