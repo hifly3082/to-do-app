@@ -1,23 +1,32 @@
-import { useState } from 'react'
+import { Drawer, Grid } from 'antd'
 import Sider from 'antd/es/layout/Sider'
 
 import NavMenu from './components/NavMenu'
-import { useStoreState } from '../store'
 
-const SiderContainer = () => {
-  const [collapsed, setCollapsed] = useState(false)
-  const isAuthenticated = useStoreState((state) => state.isAuthenticated)
+const { useBreakpoint } = Grid
 
-  return (
-    isAuthenticated && (
-      <Sider
-        theme='light'
-        collapsible
-        collapsed={collapsed}
-        onCollapse={(value) => setCollapsed(value)}>
-        <NavMenu />
-      </Sider>
-    )
+const SiderContainer = ({ open, setOpen }) => {
+  const showMenu = () => {
+    setOpen(true)
+  }
+
+  const closeMenu = () => {
+    setOpen(false)
+  }
+
+  return useBreakpoint().lg ? (
+    <Sider
+      theme='light'
+      collapsible
+      collapsed={open}
+      onCollapse={(value) => setOpen(value)}>
+      <NavMenu />
+    </Sider>
+  ) : (
+    <Drawer title='Navigation' placement='left' onClose={closeMenu} open={open}>
+      <NavMenu />
+    </Drawer>
   )
 }
+
 export default SiderContainer
