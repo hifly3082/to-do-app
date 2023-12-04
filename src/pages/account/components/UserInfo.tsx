@@ -1,7 +1,8 @@
-import { Avatar, Button, Typography } from 'antd'
+import { Avatar, Button, Space, Typography } from 'antd'
+import { LogoutOutlined, LoginOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
-import { RouteNames } from '../types'
-import { useStoreActions, useStoreState } from '../store'
+import { RouteNames } from '../../../types'
+import { useStoreActions, useStoreState } from '../../../store'
 
 const placeholder = 'https://avatar.iran.liara.run/public'
 const styles = {
@@ -10,7 +11,7 @@ const styles = {
   },
   username: {
     marginLeft: 8,
-    color: 'white'
+    color: 'black'
   }
 }
 
@@ -27,11 +28,24 @@ const UserInfo = () => {
         <Avatar size='small' src={placeholder} />
         <Typography.Text style={styles.username}>Username</Typography.Text>
       </Link>
-      <Button onClick={handleLogout}>Log out</Button>
+      <Button shape='round' onClick={handleLogout}>
+        <LogoutOutlined />
+      </Button>
     </div>
-  ) : (
-    <Link to={`/${RouteNames.Login}`}>Log in or Sign up</Link>
-  )
+  ) : null
+  //   (
+  //   location.pathname !== '/login' && (
+  //     <Button
+  //       size='large'
+  //       shape='round'
+  //       // type='link'
+  //       style={{ marginRight: '-2rem' }}>
+  //       <Link to={`/${RouteNames.Login}`}>
+  //         <LoginOutlined />
+  //       </Link>
+  //     </Button>
+  //   )
+  // )
 }
 
 export default UserInfo

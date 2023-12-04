@@ -1,8 +1,8 @@
 import { Tabs, Card, Row } from 'antd'
 import type { TabsProps } from 'antd'
 
-import LogIn from './LogIn'
-import SignUp from './SignUp'
+import LogIn from './components/LogIn'
+import SignUp from './components/SignUp'
 
 const items: TabsProps['items'] = [
   {
@@ -18,12 +18,6 @@ const items: TabsProps['items'] = [
 ]
 
 const LoginPage = () => {
-  return (
-    <Row justify='center'>
-      <Card style={{ width: 600 }}>
-        <Tabs centered defaultActiveKey='1' items={items} />
-      </Card>
-    </Row>
-  )
+  return <Tabs centered defaultActiveKey='1' items={items} />
 }
 export default LoginPage
