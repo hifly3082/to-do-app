@@ -1,5 +1,5 @@
-import { Avatar, Button, Typography } from 'antd'
-import { LogoutOutlined } from '@ant-design/icons'
+import { Avatar, Button, Space, Typography } from 'antd'
+import { LogoutOutlined, LoginOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
 import { RouteNames } from '../../../types'
 import { useStoreActions, useStoreState } from '../../../store'
@@ -32,9 +32,20 @@ const UserInfo = () => {
         <LogoutOutlined />
       </Button>
     </div>
-  ) : (
-    <Link to={`/${RouteNames.Login}`}>Log in or Sign up</Link>
-  )
+  ) : null
+  //   (
+  //   location.pathname !== '/login' && (
+  //     <Button
+  //       size='large'
+  //       shape='round'
+  //       // type='link'
+  //       style={{ marginRight: '-2rem' }}>
+  //       <Link to={`/${RouteNames.Login}`}>
+  //         <LoginOutlined />
+  //       </Link>
+  //     </Button>
+  //   )
+  // )
 }
 
 export default UserInfo

@@ -1,9 +1,9 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Row, Col, Form, Input, Button, Checkbox, message } from 'antd'
 import { UserAddOutlined } from '@ant-design/icons'
-import { Link } from 'react-router-dom'
 
-export default function SignUp() {
+const SignUp = () => {
   const [checked, setChecked] = useState(false)
   const [form] = Form.useForm()
 
@@ -27,7 +27,7 @@ export default function SignUp() {
   }
 
   return (
-    <Form name='signup' initialValues={{}} onFinish={onFinish} form={form}>
+    <Form name='signup' form={form} onFinish={onFinish}>
       <Row gutter={{ xs: 8, sm: 16 }}>
         <Col xs={{ span: 24 }} md={{ span: 12 }}>
           <Form.Item
@@ -170,3 +170,5 @@ export default function SignUp() {
     </Form>
   )
 }
+
+export default SignUp
