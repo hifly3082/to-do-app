@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Button, Divider, Form, Grid, Space, Spin } from 'antd'
 
+
 import { Todo } from '../../types'
 import { useStoreActions, useStoreState } from '../../store'
 import TodoList from './components/TodoList'
@@ -123,7 +124,6 @@ const TodoListPage: React.FC = () => {
           form={form}
         />
       </Form.Provider>
-      <Divider />
       <Space>
         <Button disabled={loading} type='primary' onClick={handleOpenModal}>
           Add new task
