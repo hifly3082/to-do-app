@@ -14,16 +14,24 @@ const SiderContainer = ({ open, setOpen }) => {
     setOpen(false)
   }
 
-  return useBreakpoint().lg ? (
-    <Sider
-      theme='light'
-      collapsible
-      collapsed={open}
-      onCollapse={(value) => setOpen(value)}>
-      <NavMenu />
-    </Sider>
-  ) : (
-    <Drawer title='Navigation' placement='left' onClose={closeMenu} open={open}>
+  if (useBreakpoint().md)
+    return (
+      <Sider
+        theme='light'
+        collapsible
+        collapsed={open}
+        onCollapse={(value) => setOpen(value)}>
+        <NavMenu />
+      </Sider>
+    )
+
+  return (
+    <Drawer
+      title='Navigation'
+      placement='left'
+      open={open}
+      onClose={closeMenu}
+      onClick={closeMenu}>
       <NavMenu />
     </Drawer>
   )

@@ -2,28 +2,31 @@ import { Header } from 'antd/es/layout/layout'
 import { Button, Grid } from 'antd'
 import { MenuOutlined } from '@ant-design/icons'
 
-import UserInfo from '../pages/account/components/UserInfo'
+import UserInfoContainer from '../pages/account/components/UserInfoContainer'
 import { useStoreState } from '../store'
 
 const { useBreakpoint } = Grid
 
 const HeaderContainer = ({ setOpen }) => {
   const isAuthenticated = useStoreState((state) => state.isAuthenticated)
+  const { md, lg } = useBreakpoint()
 
-  return useBreakpoint().lg ? (
+  return md ? (
     <Header
       style={{
+        padding: '0 1rem',
         backgroundColor: '#fefefe',
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center'
       }}>
       <div></div>
-      <UserInfo />
+      <UserInfoContainer />
     </Header>
   ) : (
     <Header
       style={{
+        padding: '0 1rem',
         backgroundColor: '#fefefe',
         display: 'flex',
         justifyContent: 'space-between',
@@ -34,7 +37,7 @@ const HeaderContainer = ({ setOpen }) => {
           <MenuOutlined />
         </Button>
       )}
-      <UserInfo />
+      <UserInfoContainer />
     </Header>
   )
 }

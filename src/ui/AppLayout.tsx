@@ -11,7 +11,7 @@ const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
   return (
     <Layout theme='light' style={{ height: '100vh' }}>
-      <HeaderContainer setOpen={setOpen} />
+      {isAuthenticated && <HeaderContainer setOpen={setOpen} />}
       <Layout>
         {isAuthenticated && <SiderContainer open={open} setOpen={setOpen} />}
         <Layout

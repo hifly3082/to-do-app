@@ -52,6 +52,7 @@ const NavMenu = () => {
       defaultSelectedKeys={[RouteNames.Todo]}
       selectedKeys={[location.pathname]}
       items={items}
+      style={{ border: 'none' }}
     />
   )
 }
