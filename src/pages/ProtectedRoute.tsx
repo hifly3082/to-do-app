@@ -8,12 +8,10 @@ const ProtectedRoute = () => {
 
   useEffect(() => {
     if (!isAuthenticated) {
-      navigate('/about')
+      navigate('/home')
     }
   }, [isAuthenticated, navigate])
 
-  // If not authenticated, the useEffect will handle navigation, so no need to return null.
-  // If authenticated, Outlet will render the child routes.
   return isAuthenticated ? <Outlet /> : null
 }
 

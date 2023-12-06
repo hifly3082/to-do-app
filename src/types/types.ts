@@ -18,5 +18,6 @@ export const enum RouteNames {
   Login = 'login',
   Todo = 'todo',
   Account = 'account',
-  About = 'about'
+  About = 'about',
+  Home = 'home'
 }

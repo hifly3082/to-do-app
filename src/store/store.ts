@@ -37,6 +37,7 @@ const storeModel: StoreModel = {
       dueDate: payload.dueDate || null
     })
   }),
+  // Loading sample data
   loadData: action((state, payload) => {
     if (Array.isArray(payload)) {
       payload.forEach((item) => {
@@ -66,7 +67,6 @@ const storeModel: StoreModel = {
     }
   }),
   toggleStatus: action((state, id) => {
-    console.log(`toggleStatus action called with id`, id)
     const todo = state.todos.find((todo) => todo.id === id)
     if (todo) {
       todo.completed = !todo.completed
