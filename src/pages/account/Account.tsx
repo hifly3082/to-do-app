@@ -1,51 +1,13 @@
-import {
-  Avatar,
-  Col,
-  Typography,
-  Descriptions,
-  Row,
-  Progress,
-  Card,
-  Grid
-} from 'antd'
-import type { DescriptionsProps } from 'antd'
+import { Avatar, Col, Typography, Row, Progress, Grid } from 'antd'
+import './account.module.scss'
 
 const placeholder = 'https://avatar.iran.liara.run/public'
-const items: DescriptionsProps['items'] = [
-  {
-    label: 'User Name',
-    children: 'User Name'
-  },
-  {
-    label: 'Time',
-    children: '18:00:00'
-  },
-  {
-    label: 'Tasks',
-    children: <Progress percent={67} status='active' />
-  }
-]
-
-const { useBreakpoint } = Grid
 
 const Account: React.FC = () => {
-  if (useBreakpoint().md)
-    return (
-      <>
-        <Col span={8}>
-          <Avatar
-            src={placeholder}
-            size={150}
-            style={{ border: '1px solid #ddd' }}
-          />
-        </Col>
-        <Col span={16}>
-          <Descriptions bordered column={1} items={items} />
-        </Col>
-      </>
-    )
+  const { useBreakpoint } = Grid
+  const { md } = useBreakpoint()
 
-  return (
+  return md ? (
     <Row justify='space-evenly'>
       <Col span={8}>
         <Avatar
@@ -60,6 +22,21 @@ const Account: React.FC = () => {
         <Progress percent={67} status='active' />
       </Col>
     </Row>
+  ) : (
+    <>
+      <h1>text-overflow on a fluid width container</h1>
+      <div className='wrapper'>
+        <div className='fluid'>
+          <div className='fluid-content'>
+            This div does not have a fixed width. Its content will not wrap. If
+            the content does not fit it will be truncated with ellipses.
+          </div>
+        </div>
+        <div className='static'>
+          <div className='static-content'>fixed width</div>
+        </div>
+      </div>
+    </>
   )
 }
 

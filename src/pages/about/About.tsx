@@ -1,4 +1,4 @@
-import { Layout, Typography, Button, Card, Row, Col, Grid } from 'antd'
+import { Layout, Typography, Card, Col, Grid } from 'antd'
 import {
   BellOutlined,
   AntDesignOutlined,
@@ -36,41 +36,40 @@ const features = [
   }
 ]
 
-const { useBreakpoint } = Grid
-
 const About = () => {
-  const { sm, md, lg } = useBreakpoint()
+  const { useBreakpoint } = Grid
+  const { md } = useBreakpoint()
+
   return (
     <Layout>
-      <Content>
-        <Typography.Title level={2} align='center'>
-          Your Todo App
-        </Typography.Title>
-        <Typography.Paragraph align='center' style={{ padding: '1rem' }}>
-          <Col xs={24} sm={20}>
-            We understand the hustle of daily life and the constant challenge of
-            managing tasks, deadlines, and personal goals.
-            <br />
-            That's why we created this powerful yet simple todo app - to empower
-            you to take control of your day and make the most out of every
-            moment.
-          </Col>
+      <Content style={{ padding: md ? '1rem' : '0.5rem', textAlign: 'center' }}>
+        <Typography.Title level={2}>Your Todo App</Typography.Title>
+        <Typography.Paragraph style={{ marginBottom: '1.5rem' }}>
+          We understand the hustle of daily life and the constant challenge of
+          managing tasks, deadlines, and personal goals.
+          <br />
+          That's why we created this powerful yet simple todo app - to empower
+          you to take control of your day and make the most out of every moment.
         </Typography.Paragraph>
 
-        <Row gutter={[16, 16]}>
+        <div
+          style={{
+            display: 'grid',
+            gap: '1rem',
+            gridTemplateColumns: md ? 'repeat(2, 1fr)' : '1fr'
+          }}>
           {features.map((feature) => (
             <Col
               key={feature.title}
-              span={6}
-              xs={24}
-              sm={12}
-              style={{ display: 'flex' }}>
+              style={{
+                display: 'grid'
+              }}>
               <Card title={feature.title} extra={feature.icon}>
                 <Typography.Text>{feature.description}</Typography.Text>
               </Card>
             </Col>
           ))}
-        </Row>
+        </div>
       </Content>
     </Layout>
   )
