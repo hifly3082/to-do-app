@@ -11,6 +11,7 @@ const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [open, setOpen] = useState(false)
   const isAuthenticated = useStoreState((state) => state.isAuthenticated)
   const { md } = useBreakpoint()
+
   return (
     <Layout theme='light' style={{ height: '100vh' }}>
       {isAuthenticated && <HeaderContainer setOpen={setOpen} />}

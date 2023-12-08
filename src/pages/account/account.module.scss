@@ -1,0 +1,32 @@
+.wrapper {
+  display: flex;
+  width: 600px;
+}
+
+.fluid {
+  flex: 1 1 100%;
+  min-width: 0;
+}
+
+.fluid-content {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.static-content {
+  width: 200px;
+}
+
+/* not required styles */
+.wrapper {
+  border: 1px solid black;
+}
+
+.fluid-content {
+  background-color: pink;
+}
+
+.static-content {
+  background-color: yellow;
+}

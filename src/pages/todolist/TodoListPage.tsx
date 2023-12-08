@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { Button, Divider, Form, Row, Space, Spin } from 'antd'
 
-
 import { Todo } from '../../types'
 import { useStoreActions, useStoreState } from '../../store'
 import TodoList from './components/TodoList'
@@ -79,15 +78,16 @@ const TodoListPage: React.FC = () => {
 
       <Divider />
 
-      <Space>
-        <Button disabled={loading} type='primary' onClick={handleOpenModal}>
-          Add new task
-        </Button>
-        <Button disabled={loading} type='primary' onClick={handleLoadData}>
-          Load sample data
-        </Button>
-      </Space>
-
+      <Row justify='center'>
+        <Space>
+          <Button disabled={loading} type='primary' onClick={handleOpenModal}>
+            Add new task
+          </Button>
+          <Button disabled={loading} type='primary' onClick={handleLoadData}>
+            Load sample data
+          </Button>
+        </Space>
+      </Row>
     </>
   )
 }
