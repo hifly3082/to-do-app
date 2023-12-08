@@ -3,7 +3,6 @@ import { Spin } from 'antd'
 
 const Spinner: React.FC = () => (
   <Spin
-    tip='Loading'
     size='large'
     fullscreen
     indicator={<LoadingOutlined style={{ fontSize: 96 }} spin />}

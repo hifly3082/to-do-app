@@ -43,30 +43,29 @@ const About = () => {
   return (
     <Layout>
       <Content>
-        <div style={{ padding: '1rem 0' }}>
-          <Typography.Title level={2} align='center'>
-            Your Todo App
-          </Typography.Title>
-          <Typography.Paragraph align='center' style={{ padding: '1rem' }}>
-            <Col xs={24} sm={20}>
-              We understand the hustle of daily life and the constant challenge
-              of managing tasks, deadlines, and personal goals.
-              <br />
-              That's why we created this powerful yet simple todo app - to
-              empower you to take control of your day and make the most out of
-              every moment.
-            </Col>
-          </Typography.Paragraph>
-        </div>
+        <Typography.Title level={2} align='center'>
+          Your Todo App
+        </Typography.Title>
+        <Typography.Paragraph align='center' style={{ padding: '1rem' }}>
+          <Col xs={24} sm={20}>
+            We understand the hustle of daily life and the constant challenge of
+            managing tasks, deadlines, and personal goals.
+            <br />
+            That's why we created this powerful yet simple todo app - to empower
+            you to take control of your day and make the most out of every
+            moment.
+          </Col>
+        </Typography.Paragraph>
 
-        <Row gutter={[16, 16]} justify='center'>
+        <Row gutter={[16, 16]}>
           {features.map((feature) => (
-            <Col key={feature.title} span={6} xs={24} sm={12}>
-              <Card
-                title={
-                  <Typography.Title level={5}>{feature.title}</Typography.Title>
-                }
-                extra={feature.icon}>
+            <Col
+              key={feature.title}
+              span={6}
+              xs={24}
+              sm={12}
+              style={{ display: 'flex' }}>
+              <Card title={feature.title} extra={feature.icon}>
                 <Typography.Text>{feature.description}</Typography.Text>
               </Card>
             </Col>

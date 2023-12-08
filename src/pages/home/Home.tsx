@@ -1,4 +1,4 @@
-import { Typography, Row, Col, Card, Button, Divider, Image, Grid } from 'antd'
+import { Typography, Row, Col, Button, Divider, Image, Grid } from 'antd'
 import { ArrowRightOutlined } from '@ant-design/icons'
 import HomeImg from '../../assets/about.png'
 import { Link } from 'react-router-dom'
@@ -8,7 +8,7 @@ const { useBreakpoint } = Grid
 
 const Home = () => {
   return (
-    <Col>
+    <Col style={{ padding: '24px 24px' }}>
       <Row justify='center'>
         <Image preview={false} src={HomeImg} width={450} />
       </Row>

@@ -2,7 +2,7 @@ import { Header } from 'antd/es/layout/layout'
 import { Button, Grid } from 'antd'
 import { MenuOutlined } from '@ant-design/icons'
 
-import UserInfoContainer from '../pages/account/components/UserInfoContainer'
+import UserInfo from '../pages/account/components/UserInfo'
 import { useStoreState } from '../store'
 
 const { useBreakpoint } = Grid
@@ -21,7 +21,7 @@ const HeaderContainer = ({ setOpen }) => {
         alignItems: 'center'
       }}>
       <div></div>
-      <UserInfoContainer />
+      <UserInfo />
     </Header>
   ) : (
     <Header
@@ -37,7 +37,7 @@ const HeaderContainer = ({ setOpen }) => {
           <MenuOutlined />
         </Button>
       )}
-      <UserInfoContainer />
+      <UserInfo />
     </Header>
   )
 }

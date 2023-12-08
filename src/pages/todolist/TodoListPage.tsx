@@ -1,12 +1,12 @@
 import { useState } from 'react'
-import { Button, Divider, Form, Grid, Space, Spin } from 'antd'
+import { Button, Divider, Form, Row, Space, Spin } from 'antd'
 
 
 import { Todo } from '../../types'
 import { useStoreActions, useStoreState } from '../../store'
 import TodoList from './components/TodoList'
 import AddEditFormContainer from './components/AddEditFormContainer'
-import { generateId } from '../../utilities/helpers'
+import { SampleData } from './components/SampleData'
 
 const TodoListPage: React.FC = () => {
   const [form] = Form.useForm()
@@ -55,58 +55,10 @@ const TodoListPage: React.FC = () => {
 
   const handleLoadData = () => {
     setLoading(true)
-
     const loadDataFunction = () => {
-      loadData([
-        {
-          id: generateId(),
-          completed: false,
-          name: '3. Now task',
-          dueDate: '2023-11-30T04:00:00.000Z'
-        },
-        {
-          id: generateId(),
-          completed: true,
-          name: '0. Empty',
-          dueDate: ''
-        },
-        {
-          id: generateId(),
-          completed: false,
-          name: '1. The oldest task',
-          description: 'This is truly old',
-          dueDate: '1965-01-01T03:00:00.000Z'
-        },
-        {
-          id: generateId(),
-          completed: false,
-          name: '5. Future task',
-          dueDate: '2030-12-01T04:00:00.000Z'
-        },
-        {
-          id: generateId(),
-          completed: true,
-          name: '2. Old task',
-          dueDate: '2021-01-01T16:00:00.000Z'
-        },
-        {
-          id: generateId(),
-          completed: false,
-          name: 'Test',
-          description: 'Sample description',
-          dueDate: ''
-        },
-        {
-          id: generateId(),
-          completed: false,
-          name: '4. Tomorrow task',
-          dueDate: '2023-12-01T02:00:00.000Z'
-        }
-      ])
-
+      loadData(SampleData)
       setLoading(false)
     }
-
     setTimeout(loadDataFunction, 2000)
   }
 
@@ -124,6 +76,9 @@ const TodoListPage: React.FC = () => {
           form={form}
         />
       </Form.Provider>
+
+      <Divider />
+
       <Space>
         <Button disabled={loading} type='primary' onClick={handleOpenModal}>
           Add new task
@@ -132,6 +87,7 @@ const TodoListPage: React.FC = () => {
           Load sample data
         </Button>
       </Space>
+
     </>
   )
 }
