@@ -25,15 +25,23 @@ const Account: React.FC = () => {
   ) : (
     <>
       <h1>text-overflow on a fluid width container</h1>
-      <div className='wrapper'>
-        <div className='fluid'>
-          <div className='fluid-content'>
+      <div style={{ display: 'flex', width: '100%' }} className='wrapper'>
+        <div className='fluid' style={{ flex: '1 1 100%', minWidth: '0' }}>
+          <div
+            className='fluid-content'
+            style={{
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              whiteSpace: 'nowrap'
+            }}>
             This div does not have a fixed width. Its content will not wrap. If
             the content does not fit it will be truncated with ellipses.
           </div>
         </div>
         <div className='static'>
-          <div className='static-content'>fixed width</div>
+          <div className='static-content' style={{ width: '200px' }}>
+            fixed width
+          </div>
         </div>
       </div>
     </>
