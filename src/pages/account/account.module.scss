@@ -1,6 +1,6 @@
 .wrapper {
   display: flex;
-  width: 600px;
+  width: 100px;
 }
 
 .fluid {
@@ -12,21 +12,10 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-
-.static-content {
-  width: 200px;
-}
-
-/* not required styles */
-.wrapper {
-  border: 1px solid black;
-}
-
-.fluid-content {
   background-color: pink;
 }
 
 .static-content {
+  width: 200px;
   background-color: yellow;
 }

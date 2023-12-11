@@ -5,8 +5,8 @@ import dayjs from 'dayjs'
 import { Todo } from '../../../types'
 import { dateFormat } from './AddEditTodoForm'
 import PopoverActionMenu from './PopoverActionMenu'
-import styles from './todo.module.scss'
 
+import './todo.scss'
 interface GetColumnsProps {
   handleDelete: (id?: string) => () => void
   handleDuplicate: (id?: string) => () => void
@@ -25,7 +25,8 @@ const getColumns = ({
   md
 }: GetColumnsProps) => {
   return md
-    ? [
+    ? // desktop version
+      [
         {
           title: 'Completed',
           dataIndex: '',
@@ -73,12 +74,14 @@ const getColumns = ({
           key: 'name',
           width: '65%',
           render: (todo: Todo) => (
-            <div>
-              <Title level={4} delete={todo.completed}>
+            <>
+              <Title level={4} delete={todo.completed} className='ellipsis'>
                 {todo.name}
               </Title>
-              <Paragraph delete={todo.completed}>{todo.description}</Paragraph>
-            </div>
+              <Paragraph delete={todo.completed} className='ellipsis'>
+                {todo.description}
+              </Paragraph>
+            </>
           )
         },
 
@@ -112,17 +115,20 @@ const getColumns = ({
           )
         }
       ]
-    : [
+    : // mobile version
+      [
         {
           title: '',
           key: 'name',
           width: '85%',
           render: (todo: Todo) => (
             <div>
-              <Title level={3} delete={todo.completed}>
+              <Title level={3} delete={todo.completed} className='ellipsis'>
                 {todo.name}
               </Title>
-              <Paragraph delete={todo.completed}>{todo.description}</Paragraph>
+              <Paragraph delete={todo.completed} className='ellipsis'>
+                {todo.description}
+              </Paragraph>
               <Text type='secondary' delete={todo.completed}>
                 {todo.dueDate && `by ${dayjs(todo.dueDate).format(dateFormat)}`}
               </Text>

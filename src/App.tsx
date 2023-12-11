@@ -7,7 +7,7 @@ import {
   RouterProvider,
   Navigate
 } from 'react-router-dom'
-import './App.css'
+import './App.scss'
 
 import { RouteNames } from './types'
 import ProtectedRoute from './pages/ProtectedRoute'

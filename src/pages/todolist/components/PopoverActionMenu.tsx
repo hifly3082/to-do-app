@@ -30,16 +30,13 @@ const PopoverActionMenu: React.FC<PopoverActionMenuProps> = ({
   const hide = () => {
     setOpen(false)
   }
-
   const handleOpenChange = (newOpen: boolean) => {
     setOpen(newOpen)
   }
-
   const handleToggleCompleted = () => {
     onToggleCompleted()
     hide()
   }
-
   const handleEdit = () => {
     onEdit()
     hide()
@@ -77,9 +74,7 @@ const PopoverActionMenu: React.FC<PopoverActionMenuProps> = ({
               title='Confirm delete?'
               placement='top'
               onConfirm={handleDelete}>
-              <span onClick={(e) => e.preventDefault()}>
-                <DeleteOutlined /> Delete task
-              </span>
+              <DeleteOutlined /> Delete task
             </Popconfirm>
           </Menu.Item>
         </Menu>
