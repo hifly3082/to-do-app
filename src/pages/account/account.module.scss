@@ -1,3 +1,17 @@
+// AccountPage.tsx
+
+.content {
+  text-align: center;
+  padding: 1rem 0;
+}
+
 .avatar {
   border: 1px solid #ddd;
+  margin-bottom: 1rem;
+}
+
+.button {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
 }
