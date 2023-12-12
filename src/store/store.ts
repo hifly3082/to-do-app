@@ -4,8 +4,8 @@ import { generateId } from '../utilities/helpers'
 
 export interface StoreModel {
   isAuthenticated: boolean
-  user: User | null
-  login: Action<StoreModel, boolean>
+  user: User
+  login: Action<StoreModel, User>
   logout: Action<StoreModel, boolean>
   todos: Todo[]
   addTodo: Action<StoreModel, Todo>
@@ -18,14 +18,22 @@ export interface StoreModel {
 
 const storeModel: StoreModel = {
   isAuthenticated: false,
-  user: null,
-  login: action((state) => {
-    state.isAuthenticated = true
-    // state.user = payload
+  user: {
+    email: 'johndoe@example.com',
+    password: 'johndoe@example.com'
+  },
+  login: action((state, payload) => {
+    if (
+      payload.email === state.user.email &&
+      payload.password === state.user.password
+    ) {
+      state.isAuthenticated = true
+    } else {
+      throw new Error('Login failed')
+    }
   }),
   logout: action((state) => {
     state.isAuthenticated = false
-    // state.user = null
   }),
   todos: [],
   addTodo: action((state, payload) => {

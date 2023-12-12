@@ -1,25 +1,25 @@
-import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Button, Checkbox, Col, Form, Input, Row, message } from 'antd'
 import { LoginOutlined } from '@ant-design/icons'
 
 import { useStoreActions } from '../../../store'
+import { User } from '../../../types'
 
 const LogIn = () => {
-  const [email, setEmail] = useState('example@gmail.com')
-  const [password, setPassword] = useState('Example@gmai1')
-  const [form] = Form.useForm()
   const navigate = useNavigate()
+  const [form] = Form.useForm()
 
   const login = useStoreActions((actions) => actions.login)
 
-  const onFinish = async (values) => {
+  const onFinish = async (values: User) => {
     try {
-      form.resetFields()
+      login(values)
       navigate('/')
-      login()
+      form.resetFields()
     } catch (error) {
-      message.error('Login failed!')
+      if (error instanceof Error) {
+        message.error(error.message || 'Login failed!')
+      }
     }
   }
 
@@ -33,7 +33,8 @@ const LogIn = () => {
         name='login'
         form={form}
         initialValues={{
-          remember: false
+          email: 'johndoe@example.com',
+          password: 'johndoe@example.com'
         }}
         onFinish={onFinish}>
         <Row gutter={{ xs: 8, sm: 16 }}>
@@ -44,17 +45,16 @@ const LogIn = () => {
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
               hasFeedback
-              // rules={[
-              //   {
-              //     required: true,
-              //     message: 'Please input your email.'
-              //   },
-              //   {
-              //     type: 'email',
-              //     message: 'Your email is invalid.'
-              //   }
-              // ]}
-            >
+              rules={[
+                {
+                  required: true,
+                  message: 'Please input your email.'
+                },
+                {
+                  type: 'email',
+                  message: 'Your email is invalid.'
+                }
+              ]}>
               <Input placeholder='Email' size='large' autoComplete='off' />
             </Form.Item>
           </Col>
@@ -66,14 +66,13 @@ const LogIn = () => {
               label='Password'
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
-              // rules={[
-              //   {
-              //     required: true,
-              //     message: 'Please input your password.'
-              //   },
-              //   { min: 6, message: 'Password must be minimum 6 characters.' }
-              // ]}
-            >
+              rules={[
+                {
+                  required: true,
+                  message: 'Please input your password.'
+                },
+                { min: 6, message: 'Password must be minimum 6 characters.' }
+              ]}>
               <Input.Password
                 placeholder='Password'
                 size='large'
