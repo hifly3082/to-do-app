@@ -6,7 +6,7 @@ import { Todo } from '../../../types'
 import { dateFormat } from './AddEditTodoForm'
 import PopoverActionMenu from './PopoverActionMenu'
 
-import './todo.scss'
+import styles from './todo.module.scss'
 interface GetColumnsProps {
   handleDelete: (id?: string) => () => void
   handleDuplicate: (id?: string) => () => void
@@ -28,10 +28,10 @@ const getColumns = ({
     ? // desktop version
       [
         {
-          title: 'Completed',
+          title: 'Done',
           dataIndex: '',
           key: 'completed',
-          width: '5%',
+          width: '2%',
           render: (todo: Todo) => (
             <Flex justify='center'>
               <Checkbox
@@ -45,7 +45,8 @@ const getColumns = ({
           title: 'Due Date',
           dataIndex: '',
           key: 'dueDate',
-          width: '10%',
+          width: '8%',
+
           sorter: (a: Todo, b: Todo) => {
             const dateA = a.dueDate && dayjs(a.dueDate)
             const dateB = b.dueDate && dayjs(b.dueDate)
@@ -73,22 +74,20 @@ const getColumns = ({
           dataIndex: '',
           key: 'name',
           width: '65%',
+
           render: (todo: Todo) => (
             <>
-              <Title level={4} delete={todo.completed} className='ellipsis'>
+              <Title level={4} delete={todo.completed}>
                 {todo.name}
               </Title>
-              <Paragraph delete={todo.completed} className='ellipsis'>
-                {todo.description}
-              </Paragraph>
+              <Paragraph delete={todo.completed}>{todo.description}</Paragraph>
             </>
           )
         },
-
         {
           title: 'Actions',
           key: 'actions',
-          width: '10%',
+          width: '8%',
           render: (todo: Todo) => (
             <Flex gap='small'>
               <Tooltip title='Edit task'>
@@ -118,17 +117,36 @@ const getColumns = ({
     : // mobile version
       [
         {
-          title: '',
+          sorter: (a: Todo, b: Todo) => {
+            const dateA = a.dueDate && dayjs(a.dueDate)
+            const dateB = b.dueDate && dayjs(b.dueDate)
+
+            return dateA && dateB
+              ? dateA.isBefore(dateB)
+                ? -1
+                : dateA.isAfter(dateB)
+                ? 1
+                : 0
+              : dateA
+              ? 1
+              : dateB
+              ? -1
+              : 0
+          }
+        },
+        {
           key: 'name',
           width: '85%',
           render: (todo: Todo) => (
             <div>
-              <Title level={3} delete={todo.completed} className='ellipsis'>
+              <Title level={4} delete={todo.completed}>
                 {todo.name}
               </Title>
-              <Paragraph delete={todo.completed} className='ellipsis'>
-                {todo.description}
-              </Paragraph>
+              {todo.description && (
+                <Paragraph delete={todo.completed} className={styles.ellipsis}>
+                  {todo.description}
+                </Paragraph>
+              )}
               <Text type='secondary' delete={todo.completed}>
                 {todo.dueDate && `by ${dayjs(todo.dueDate).format(dateFormat)}`}
               </Text>
@@ -151,8 +169,3 @@ const getColumns = ({
 }
 
 export default getColumns
-
-//  <ReactMarkdown
-//         className={styles.description}
-//         children={isActive ? description : setEllipsis(descriptionPreview)}
-//   />

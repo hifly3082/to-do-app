@@ -7,6 +7,7 @@ import {
   SecurityScanOutlined
 } from '@ant-design/icons'
 import { RouteNames } from '../../types'
+import styles from '../ui.module.scss'
 
 type MenuItem = Required<MenuProps>['items'][number]
 
@@ -52,7 +53,7 @@ const NavMenu = () => {
       defaultSelectedKeys={[RouteNames.Todo]}
       selectedKeys={[location.pathname]}
       items={items}
-      style={{ border: 'none' }}
+      className={styles.menu}
     />
   )
 }
