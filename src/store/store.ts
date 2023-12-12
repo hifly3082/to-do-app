@@ -28,6 +28,8 @@ const storeModel: StoreModel = {
       payload.password === state.user.password
     ) {
       state.isAuthenticated = true
+    } else {
+      throw new Error('Login failed')
     }
   }),
   logout: action((state) => {

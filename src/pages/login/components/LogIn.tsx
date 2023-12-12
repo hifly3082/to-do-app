@@ -17,7 +17,9 @@ const LogIn = () => {
       navigate('/')
       form.resetFields()
     } catch (error) {
-      message.error('Login failed!')
+      if (error instanceof Error) {
+        message.error(error.message || 'Login failed!')
+      }
     }
   }
 
