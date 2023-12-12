@@ -3,7 +3,7 @@ import AddEditTodoForm from './AddEditTodoForm'
 import { Todo } from '../../../types'
 
 interface AddEditTodoFormProps {
-  form: FormInstance<Todo> // not sure
+  form: FormInstance<Todo>
   openModal: boolean
   onCancel: () => void
   onOk: () => void

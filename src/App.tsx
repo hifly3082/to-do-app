@@ -7,7 +7,7 @@ import {
   RouterProvider,
   Navigate
 } from 'react-router-dom'
-import './App.css'
+import './App.scss'
 
 import { RouteNames } from './types'
 import ProtectedRoute from './pages/ProtectedRoute'
@@ -17,8 +17,8 @@ const AppLayout = lazy(() => import('./ui/AppLayout'))
 const Home = lazy(() => import('./pages/home/Home'))
 const LoginPage = lazy(() => import('./pages/login/LoginPage'))
 const TodoListPage = lazy(() => import('./pages/todolist/TodoListPage'))
-const Account = lazy(() => import('./pages/account/Account'))
-const About = lazy(() => import('./pages/about/About'))
+const Account = lazy(() => import('./pages/account/AccountPage'))
+const About = lazy(() => import('./pages/about/AboutPage'))
 const PageNotFound = lazy(() => import('./pages/PageNotFound'))
 
 const router = createBrowserRouter(

@@ -3,6 +3,7 @@ import { Input, DatePicker, Form, FormInstance } from 'antd'
 import dayjs from 'dayjs'
 
 import { Todo } from '../../../types'
+import styles from './todo.module.scss'
 
 interface AddEditTodoFormProps {
   todoToEdit?: Todo
@@ -42,7 +43,11 @@ const AddEditTodoForm: React.FC<AddEditTodoFormProps> = ({
       </Form.Item>
 
       <Form.Item label='Due Date' name='dueDate'>
-        <DatePicker showTime format={dateFormat} style={{ width: '100%' }} />
+        <DatePicker
+          showTime
+          format={dateFormat}
+          className={styles.full_width}
+        />
       </Form.Item>
     </Form>
   )

@@ -1,0 +1,49 @@
+// AppLayout.tsx
+
+.fullheight {
+  height: 100vh;
+}
+
+.mobile_layout {
+  padding: 0 0.8rem;
+}
+
+.desktop_layout {
+  padding: 1.5rem 1.5rem;
+}
+
+// HeaderContainer.tsx
+
+.header {
+  padding: 0 1rem;
+  background-color: #fefefe;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+//  NavMenu.tsx
+
+.menu {
+  border: none !important;
+}
+
+// Logo.tsx
+
+.logo {
+  margin-left: -32px;
+}
+
+// SearchBar.tsx
+
+.searchbar {
+  width: auto;
+  position: absolute;
+  top: 25%;
+}
+
+// SpinnerFullPage.tsx
+
+.spinner_fp {
+  font-size: 96px;
+}
