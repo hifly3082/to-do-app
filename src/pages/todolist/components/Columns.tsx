@@ -45,7 +45,7 @@ const getColumns = ({
           title: 'Due Date',
           dataIndex: '',
           key: 'dueDate',
-          width: '8%',
+          width: '15%',
 
           sorter: (a: Todo, b: Todo) => {
             const dateA = a.dueDate && dayjs(a.dueDate)

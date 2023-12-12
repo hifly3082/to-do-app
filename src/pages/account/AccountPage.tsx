@@ -1,21 +1,12 @@
-import { useState } from 'react'
 import {
   Avatar,
-  Col,
-  Typography,
-  Row,
   Progress,
-  Grid,
-  Modal,
-  Form,
-  Input,
-  Descriptions,
   Button,
   Layout,
   Tooltip,
   Card,
-  Divider,
-  List
+  List,
+  Typography
 } from 'antd'
 import { EditOutlined } from '@ant-design/icons'
 import { Content } from 'antd/es/layout/layout'
@@ -28,13 +19,7 @@ const placeholder = 'https://avatar.iran.liara.run/public'
 
 const Account: React.FC = () => {
   const todos = useStoreState((state) => state.todos)
-  const { useBreakpoint } = Grid
-  const { md } = useBreakpoint()
-
   const percentage = calculateCompletionPercentage(todos)
-
-  const [username, setUsername] = useState('John Doe')
-  const [email, setEmail] = useState('johndoe@example.com')
 
   return (
     <Layout>
@@ -49,12 +34,15 @@ const Account: React.FC = () => {
             </Tooltip>
 
             <List>
-              <List.Item>Name: {username}</List.Item>
-              <List.Item>E-mail: {email}</List.Item>
-              <List.Item>
+              <Typography.Paragraph>Name: John Doe</Typography.Paragraph>
+              <Typography.Paragraph>
+                E-mail: johndoe@example.com
+              </Typography.Paragraph>
+
+              <Typography.Paragraph>
                 Tasks completed:
                 <Progress percent={percentage} status='active' />
-              </List.Item>
+              </Typography.Paragraph>
             </List>
           </div>
         </Card>

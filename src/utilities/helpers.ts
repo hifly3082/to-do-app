@@ -10,5 +10,5 @@ export const calculateCompletionPercentage = (todos: Todo[]) => {
   const completedTodos = todos.filter((todo) => todo.completed)
   const completionPercentage = (completedTodos.length / todos.length) * 100
 
-  return completionPercentage.toFixed(0)
+  return parseInt(completionPercentage.toFixed(0))
 }
