@@ -10,6 +10,8 @@ import {
 } from '@ant-design/icons'
 import { useState } from 'react'
 
+import styles from './todo.module.scss'
+
 interface PopoverActionMenuProps {
   todo: Todo
   onToggleCompleted: () => void
@@ -53,7 +55,7 @@ const PopoverActionMenu: React.FC<PopoverActionMenuProps> = ({
   return (
     <Popover
       content={
-        <Menu style={{ border: 'none' }}>
+        <Menu className={styles.popover_menu}>
           <Menu.Item
             key='0'
             onClick={handleToggleCompleted}

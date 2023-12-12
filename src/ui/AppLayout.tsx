@@ -4,6 +4,7 @@ import { Layout, Grid } from 'antd'
 import SiderContainer from './SiderContainer'
 import HeaderContainer from './HeaderContainer'
 import { useStoreState } from '../store'
+import styles from './ui.module.scss'
 
 const { useBreakpoint } = Grid
 
@@ -13,18 +14,11 @@ const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { md } = useBreakpoint()
 
   return (
-    <Layout theme='light' style={{ height: '100vh' }}>
+    <Layout theme='light' className={styles.fullheight}>
       {isAuthenticated && <HeaderContainer setOpen={setOpen} />}
       <Layout>
         {isAuthenticated && <SiderContainer open={open} setOpen={setOpen} />}
-        <Layout
-          style={
-            md
-              ? {
-                  padding: '1.5rem 1.5rem'
-                }
-              : { padding: '0 0.8rem' }
-          }>
+        <Layout className={md ? styles.desktop_layout : styles.mobile_layout}>
           {children}
         </Layout>
       </Layout>

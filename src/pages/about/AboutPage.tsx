@@ -6,30 +6,32 @@ import {
   MobileOutlined
 } from '@ant-design/icons'
 
+import styles from './about.module.scss'
+
 const { Content } = Layout
 
 const features = [
   {
-    title: 'User-Friendly Interface',
+    title: 'User-friendly interface',
     icon: <AntDesignOutlined />,
     description:
       "We've designed our app with you in mind. Choose from various themes, categorize your tasks, and personalize your experience for optimal efficiency."
   },
   {
-    title: 'Feature-Rich Functionality',
+    title: 'Extensive features',
     subheader: 'Most popular',
     icon: <SlidersOutlined />,
     description:
       'From simple task lists to advanced project management, Todo app caters to all your organizational needs. Set due dates, create subtasks, and prioritize your to-dos with ease'
   },
   {
-    title: 'Cross-Platform Accessibility',
+    title: 'Universal platform access',
     icon: <MobileOutlined />,
     description:
       "Your tasks should be where you are. That's why Todo app seamlessly syncs across all your devices, be it your smartphone, tablet, or computer."
   },
   {
-    title: 'Smart Reminders',
+    title: 'Smart reminders',
     icon: <BellOutlined />,
     description:
       'Never miss a deadline again. Todo app sends you timely reminders, ensuring that you stay on top of your tasks and commitments.'
@@ -42,9 +44,9 @@ const About = () => {
 
   return (
     <Layout>
-      <Content style={{ padding: md ? '1rem' : '0.5rem', textAlign: 'center' }}>
+      <Content className={styles.content}>
         <Typography.Title level={2}>Your Todo App</Typography.Title>
-        <Typography.Paragraph style={{ marginBottom: '1.5rem' }}>
+        <Typography.Paragraph className={styles.paragraph}>
           We understand the hustle of daily life and the constant challenge of
           managing tasks, deadlines, and personal goals.
           <br />
@@ -52,18 +54,9 @@ const About = () => {
           you to take control of your day and make the most out of every moment.
         </Typography.Paragraph>
 
-        <div
-          style={{
-            display: 'grid',
-            gap: '1rem',
-            gridTemplateColumns: md ? 'repeat(2, 1fr)' : '1fr'
-          }}>
+        <div className={md ? styles.desktop_grid : styles.mobile_grid}>
           {features.map((feature) => (
-            <Col
-              key={feature.title}
-              style={{
-                display: 'grid'
-              }}>
+            <Col key={feature.title} className={styles.grid}>
               <Card title={feature.title} extra={feature.icon}>
                 <Typography.Text>{feature.description}</Typography.Text>
               </Card>

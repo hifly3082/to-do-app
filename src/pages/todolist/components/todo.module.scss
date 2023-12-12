@@ -1,3 +1,5 @@
+// Columns.tsx
+
 .ellipsis {
   position: relative;
 }
@@ -16,4 +18,16 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
+}
+
+// AddEditTodoForm.tsx
+
+.full_width {
+  width: 100%;
+}
+
+// PopoverActionMenu.tsx
+
+.popover_menu {
+  border: none !important;
 }

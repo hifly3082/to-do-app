@@ -1,8 +1,9 @@
-import { Tabs, Card, Row, Col } from 'antd'
+import { Tabs, Col } from 'antd'
 import type { TabsProps } from 'antd'
 
 import LogIn from './components/LogIn'
 import SignUp from './components/SignUp'
+import styles from './login.module.scss'
 
 const items: TabsProps['items'] = [
   {
@@ -19,7 +20,7 @@ const items: TabsProps['items'] = [
 
 const LoginPage = () => {
   return (
-    <Col style={{ padding: '24px 24px' }}>
+    <Col className={styles.col}>
       <Tabs centered defaultActiveKey='1' items={items} />
     </Col>
   )

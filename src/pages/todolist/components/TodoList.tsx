@@ -19,12 +19,15 @@ const TodoList: React.FC<TodoListProps> = ({ onEdit }) => {
   const handleDelete = (id?: string) => () => {
     id && deleteTodo(id)
   }
+
   const handleDuplicate = (id?: string) => () => {
     id && copyTodo(id)
   }
+
   const handleEdit = (id?: string) => () => {
     id && onEdit(id)
   }
+
   const handleToggleCompleted = (id?: string) => () => {
     id && toggleStatus(id)
   }
@@ -41,6 +44,10 @@ const TodoList: React.FC<TodoListProps> = ({ onEdit }) => {
       dataSource={todos}
       rowKey='id'
       pagination={{ position: ['bottomLeft'] }}
+      locale={{
+        triggerDesc: 'Sort by date (descending)',
+        triggerAsc: 'Sort by date (ascending)'
+      }}
     />
   )
 }
