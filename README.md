@@ -1,12 +1,11 @@
-# ToDo app
+## ToDo app
 
 ## Table of Contents
 
 - [General Info](#general-information)
-- [Technologies Used](#technologies-used)
+- [Tech Stack](#tech-stack)
 - [Features](#features)
-- [Screenshots](#screenshots)
-- [Setup](#setup)
+- [Installation and setup](#installation-and-setup)
 - [Usage](#usage)
 
 ## General Information
