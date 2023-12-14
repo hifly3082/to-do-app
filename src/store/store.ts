@@ -6,7 +6,7 @@ export interface StoreModel {
   isAuthenticated: boolean
   user: User
   login: Action<StoreModel, User>
-  logout: Action<StoreModel, boolean>
+  logout: Action<StoreModel>
   todos: Todo[]
   addTodo: Action<StoreModel, Todo>
   loadData: Action<StoreModel, Todo[]>
