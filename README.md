@@ -1,18 +1,10 @@
-## ToDo app
+# Todo app
 
-## Table of Contents
-
-- [General Info](#general-information)
-- [Tech Stack](#tech-stack)
-- [Features](#features)
-- [Installation and setup](#installation-and-setup)
-- [Usage](#usage)
-
-## General Information
+### General Information
 
 A simple and intuitive ToDo application built with React. Manage your tasks efficiently and stay organized with this easy-to-use task manager.
 
-## Tech Stack
+### Tech Stack
 
 - Vite 4.4.5
 - TypeScript 5.0.2
@@ -21,7 +13,7 @@ A simple and intuitive ToDo application built with React. Manage your tasks effi
 - easy-peasy 6.0.4
 - Ant Design 5.11.1
 
-## Features
+### Features
 
 - Add, edit, and delete tasks
 - Mark tasks as completed
@@ -29,7 +21,7 @@ A simple and intuitive ToDo application built with React. Manage your tasks effi
 - Responsive design for seamless use on various devices
 - User-friendly interface for an enjoyable task management experience
 
-## Installation and setup
+### Installation and setup
 
 1. Make sure you have Node.js and npm installed.
 2. Clone the project repository or create a new Vite project:
@@ -46,7 +38,7 @@ cd to-do-app
 npm install
 ```
 
-## Usage
+### Usage
 
 To run the application, use the following command:
 
