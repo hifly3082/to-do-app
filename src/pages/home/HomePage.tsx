@@ -3,6 +3,7 @@ import { Typography, Row, Col, Button, Divider, Image, Grid } from 'antd'
 import { ArrowRightOutlined } from '@ant-design/icons'
 
 import HomeImg from '../../assets/about.png'
+import styles from './home.module.scss'
 
 const { Title, Paragraph } = Typography
 
@@ -12,7 +13,7 @@ const HomePage: React.FC = () => {
   const { xs } = useBreakpoint()
 
   return (
-    <Col style={{ padding: '24px 24px' }}>
+    <Col className={styles.col}>
       <Row justify='center'>
         <Image preview={false} src={HomeImg} width={450} />
       </Row>
@@ -29,7 +30,7 @@ const HomePage: React.FC = () => {
         </Paragraph>
       </Row>
       <Row justify='center'>
-        <Button type='primary' size='large' style={{ marginTop: '1rem' }}>
+        <Button type='primary' size='large' className={styles.button}>
           <Link to='/login'>
             Get Started <ArrowRightOutlined />
           </Link>

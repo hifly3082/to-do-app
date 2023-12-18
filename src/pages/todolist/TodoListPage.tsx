@@ -38,9 +38,7 @@ const TodoListPage: React.FC = () => {
     form.submit()
   }
 
-  const handleFormFinish = (_name: string, { values }) => {
-    console.log(values)
-
+  const handleFormFinish = (_name: string, { values }: { values: Todo }) => {
     setLoading(true)
     if (todoToEdit?.id) {
       editTodo({ ...values, id: todoToEdit.id })

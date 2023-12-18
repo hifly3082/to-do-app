@@ -7,14 +7,14 @@ import UserInfo from '../pages/account/components/UserInfo'
 import styles from './ui.module.scss'
 
 interface HeaderContainerProps {
-  setOpen: () => void
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const { useBreakpoint } = Grid
 
 const HeaderContainer: React.FC<HeaderContainerProps> = ({ setOpen }) => {
-  const isAuthenticated = useStoreState((state) => state.isAuthenticated)
   const { md } = useBreakpoint()
+  const isAuthenticated = useStoreState((state) => state.isAuthenticated)
 
   return md ? (
     <Header className={styles.header}>
@@ -24,7 +24,7 @@ const HeaderContainer: React.FC<HeaderContainerProps> = ({ setOpen }) => {
   ) : (
     <Header className={styles.header}>
       {isAuthenticated && (
-        <Button onClick={setOpen}>
+        <Button onClick={() => setOpen((prev) => !prev)}>
           <MenuOutlined />
         </Button>
       )}

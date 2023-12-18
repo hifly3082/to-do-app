@@ -34,9 +34,9 @@ const Account: React.FC = () => {
             </Tooltip>
 
             <List>
-              <Typography.Paragraph>Name: John Doe</Typography.Paragraph>
+              <Typography.Paragraph>Name: Mark Avvakumov</Typography.Paragraph>
               <Typography.Paragraph>
-                E-mail: johndoe@example.com
+                E-mail: mav@example.com
               </Typography.Paragraph>
 
               <Typography.Paragraph>
