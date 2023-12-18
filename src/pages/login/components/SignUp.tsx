@@ -1,29 +1,36 @@
-import { useState } from 'react'
+import { FormEvent, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Row, Col, Form, Input, Button, Checkbox, message } from 'antd'
+import { Row, Col, Form, Input, Button, Checkbox, FormInstance } from 'antd'
 import { UserAddOutlined } from '@ant-design/icons'
+import { CheckboxChangeEvent } from 'antd/es/checkbox'
 
-const SignUp = () => {
+import { User } from '../../../types'
+
+interface SignUpFormProps {
+  form: FormInstance
+  onFinish: (values: User) => void
+}
+
+const SignUp: React.FC<SignUpFormProps> = ({ form, onFinish }) => {
   const [checked, setChecked] = useState(false)
-  const [form] = Form.useForm()
 
-  const onFinish = async () => {
-    try {
-      form.resetFields()
-    } catch (error) {
-      message.error('Something went wrong!')
-    }
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault()
+    form.submit()
   }
 
-  const onCheckboxChange = (e) => {
+  const onCheckboxChange = (e: CheckboxChangeEvent) => {
     setChecked(e.target.checked)
   }
 
-  const validation = (rule, value, callback) => {
-    if (checked) {
-      return callback()
-    }
-    return callback('Please agree Terms of Use & Privacy policy')
+  const validation = (): Promise<void> => {
+    return new Promise<void>((resolve, reject) => {
+      if (checked) {
+        resolve()
+      } else {
+        reject('Please agree to Terms of Use & Privacy policy')
+      }
+    })
   }
 
   return (
@@ -164,7 +171,8 @@ const SignUp = () => {
             type='primary'
             htmlType='submit'
             icon={<UserAddOutlined />}
-            size='large'>
+            size='large'
+            onSubmit={handleSubmit}>
             Sign Up
           </Button>
         </Row>
