@@ -37,9 +37,9 @@ const features = [
       'Never miss a deadline again. Todo app sends you timely reminders, ensuring that you stay on top of your tasks and commitments.'
   }
 ]
+const { useBreakpoint } = Grid
 
-const About = () => {
-  const { useBreakpoint } = Grid
+const About: React.FC = () => {
   const { md } = useBreakpoint()
 
   return (
@@ -47,11 +47,11 @@ const About = () => {
       <Content className={styles.content}>
         <Typography.Title level={2}>Your Todo App</Typography.Title>
         <Typography.Paragraph className={styles.paragraph}>
-          We understand the hustle of daily life and the constant challenge of
-          managing tasks, deadlines, and personal goals.
+          We understand the hustle of daily life and the challenge of managing
+          tasks, deadlines, and personal goals.
           <br />
-          That's why we created this powerful yet simple todo app - to empower
-          you to take control of your day and make the most out of every moment.
+          That's why we created this powerful yet simple todo app - to take
+          control of your day and make the most out of every moment.
         </Typography.Paragraph>
 
         <div className={md ? styles.desktop_grid : styles.mobile_grid}>

@@ -1,20 +1,21 @@
 import { Table, Grid } from 'antd'
 
-import { useStoreState, useStoreActions } from '../../../store'
-import getColumns from './Columns'
+import { useStoreState, useStoreActions } from '../../store'
+import { getColumns } from '../../ui/components/todolist/utils'
 
 interface TodoListProps {
   onEdit: (id: string) => void
 }
 
+const { useBreakpoint } = Grid
+
 const TodoList: React.FC<TodoListProps> = ({ onEdit }) => {
+  const { md } = useBreakpoint()
+
   const todos = useStoreState((state) => state.todos)
   const deleteTodo = useStoreActions((actions) => actions.deleteTodo)
   const copyTodo = useStoreActions((actions) => actions.copyTodo)
   const toggleStatus = useStoreActions((actions) => actions.toggleStatus)
-
-  const { useBreakpoint } = Grid
-  const { md } = useBreakpoint()
 
   const handleDelete = (id?: string) => () => {
     id && deleteTodo(id)

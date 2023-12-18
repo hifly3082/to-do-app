@@ -3,7 +3,7 @@ import { Input, DatePicker, Form, FormInstance } from 'antd'
 import dayjs from 'dayjs'
 
 import { Todo } from '../../../types'
-import styles from './todo.module.scss'
+import styles from '../../../pages/todolist/todo.module.scss'
 
 interface AddEditTodoFormProps {
   todoToEdit?: Todo

@@ -5,27 +5,27 @@ import NavMenu from './components/NavMenu'
 
 const { useBreakpoint } = Grid
 
-const SiderContainer = ({ open, setOpen }) => {
-  const showMenu = () => {
-    setOpen(true)
-  }
+interface SiderContainerProps {
+  open: boolean
+  setOpen: (arg0: boolean) => void
+}
+
+const SiderContainer: React.FC<SiderContainerProps> = ({ open, setOpen }) => {
+  const { md } = useBreakpoint()
 
   const closeMenu = () => {
     setOpen(false)
   }
 
-  if (useBreakpoint().md)
-    return (
-      <Sider
-        theme='light'
-        collapsible
-        collapsed={open}
-        onCollapse={(value) => setOpen(value)}>
-        <NavMenu />
-      </Sider>
-    )
-
-  return (
+  return md ? (
+    <Sider
+      theme='light'
+      collapsible
+      collapsed={open}
+      onCollapse={(value) => setOpen(value)}>
+      <NavMenu />
+    </Sider>
+  ) : (
     <Drawer
       title='Navigation'
       placement='left'

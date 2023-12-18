@@ -14,7 +14,7 @@ import ProtectedRoute from './pages/ProtectedRoute'
 import SpinnerFullPage from './ui/components/SpinnerFullPage'
 
 const AppLayout = lazy(() => import('./ui/AppLayout'))
-const Home = lazy(() => import('./pages/home/Home'))
+const Home = lazy(() => import('./pages/home/HomePage'))
 const LoginPage = lazy(() => import('./pages/login/LoginPage'))
 const TodoListPage = lazy(() => import('./pages/todolist/TodoListPage'))
 const Account = lazy(() => import('./pages/account/AccountPage'))

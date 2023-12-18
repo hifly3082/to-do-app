@@ -3,9 +3,9 @@ import { Button, Divider, Form, Row, Space, Spin } from 'antd'
 
 import { Todo } from '../../types'
 import { useStoreActions, useStoreState } from '../../store'
-import TodoList from './components/TodoList'
-import AddEditFormContainer from './components/AddEditFormContainer'
-import { SampleData } from './components/SampleData'
+import { SampleData } from '../../ui/components/todolist/SampleData'
+import AddEditFormContainer from '../../ui/components/todolist/AddEditFormContainer'
+import TodoList from './TodoList'
 
 const TodoListPage: React.FC = () => {
   const [form] = Form.useForm()
@@ -38,7 +38,9 @@ const TodoListPage: React.FC = () => {
     form.submit()
   }
 
-  const handleFormFinish = (_name: string, { values }: { values: Todo }) => {
+  const handleFormFinish = (_name: string, { values }) => {
+    console.log(values)
+
     setLoading(true)
     if (todoToEdit?.id) {
       editTodo({ ...values, id: todoToEdit.id })
@@ -58,7 +60,7 @@ const TodoListPage: React.FC = () => {
       loadData(SampleData)
       setLoading(false)
     }
-    setTimeout(loadDataFunction, 2000)
+    setTimeout(loadDataFunction, 1500)
   }
 
   return (

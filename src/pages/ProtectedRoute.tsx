@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
 import { useStoreState } from '../store'
 
-const ProtectedRoute = () => {
+const ProtectedRoute: React.FC = () => {
   const isAuthenticated = useStoreState((state) => state.isAuthenticated)
   const navigate = useNavigate()
 
