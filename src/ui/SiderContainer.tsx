@@ -3,12 +3,12 @@ import Sider from 'antd/es/layout/Sider'
 
 import NavMenu from './components/NavMenu'
 
-const { useBreakpoint } = Grid
-
 interface SiderContainerProps {
   open: boolean
-  setOpen: (arg0: boolean) => void
+  setOpen: (open: boolean) => void
 }
+
+const { useBreakpoint } = Grid
 
 const SiderContainer: React.FC<SiderContainerProps> = ({ open, setOpen }) => {
   const { md } = useBreakpoint()

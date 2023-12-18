@@ -19,8 +19,8 @@ export interface StoreModel {
 const storeModel: StoreModel = {
   isAuthenticated: false,
   user: {
-    email: 'johndoe@example.com',
-    password: 'johndoe@example.com'
+    email: 'mav@example.com',
+    password: 'mav@example.com'
   },
   login: action((state, payload) => {
     if (
