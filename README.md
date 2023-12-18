@@ -2,7 +2,7 @@
 
 ### General Information
 
-A simple and intuitive ToDo application built with React. Manage your tasks efficiently and stay organized with this easy-to-use task manager.
+A simple and intuitive todo application built with React. Manage your tasks efficiently and stay organized with this easy-to-use task manager.
 
 ### Tech Stack
 
