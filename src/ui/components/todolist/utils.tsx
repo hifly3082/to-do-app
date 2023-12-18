@@ -6,7 +6,6 @@ import { Todo } from '../../../types'
 import { dateFormat } from './AddEditTodoForm'
 import PopoverActionMenu from './PopoverActionMenu'
 
-import styles from './todo.module.scss'
 interface GetColumnsProps {
   handleDelete: (id?: string) => () => void
   handleDuplicate: (id?: string) => () => void
@@ -17,7 +16,7 @@ interface GetColumnsProps {
 
 const { Title, Text, Paragraph } = Typography
 
-const getColumns = ({
+export const getColumns = ({
   handleDelete,
   handleDuplicate,
   handleEdit,
@@ -51,17 +50,17 @@ const getColumns = ({
             const dateA = a.dueDate && dayjs(a.dueDate)
             const dateB = b.dueDate && dayjs(b.dueDate)
 
-            return dateA && dateB // Checks if both dateA and dateB are truthy (not null or undefined). If both dateA and dateB are truthy, it compares them.
+            return dateA && dateB
               ? dateA.isBefore(dateB)
-                ? -1 // If dateA is before dateB, it returns -1
+                ? -1
                 : dateA.isAfter(dateB)
-                ? 1 // If dateA is after dateB, it returns 1
-                : 0 // If they are equal, it returns 0
-              : dateA // If either dateA or dateB is falsy (but not both), it returns 1 or -1 depending on which one is truthy.
-              ? 1 // If dateA is truthy, returns 1
-              : dateB // If dateA is falsy, it checks the next condition:
-              ? -1 // If dateB is truthy, returns -1
-              : 0 // If both conditions are false, returns 0.
+                ? 1
+                : 0
+              : dateA
+              ? 1
+              : dateB
+              ? -1
+              : 0
           },
           render: (todo: Todo) => (
             <Text delete={todo.completed}>
@@ -143,7 +142,7 @@ const getColumns = ({
                 {todo.name}
               </Title>
               {todo.description && (
-                <Paragraph delete={todo.completed} className={styles.ellipsis}>
+                <Paragraph delete={todo.completed}>
                   {todo.description}
                 </Paragraph>
               )}
@@ -167,5 +166,3 @@ const getColumns = ({
         }
       ]
 }
-
-export default getColumns

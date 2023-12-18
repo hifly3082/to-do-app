@@ -3,9 +3,9 @@ import { Button, Divider, Form, Row, Space, Spin } from 'antd'
 
 import { Todo } from '../../types'
 import { useStoreActions, useStoreState } from '../../store'
-import TodoList from './components/TodoList'
-import AddEditFormContainer from './components/AddEditFormContainer'
-import { SampleData } from './components/SampleData'
+import TodoList from './TodoList'
+import AddEditFormContainer from '../../ui/components/todolist/AddEditFormContainer'
+import { SampleData } from '../../ui/components/todolist/SampleData'
 
 const TodoListPage: React.FC = () => {
   const [form] = Form.useForm()

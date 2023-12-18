@@ -6,10 +6,6 @@ import NavMenu from './components/NavMenu'
 const { useBreakpoint } = Grid
 
 const SiderContainer = ({ open, setOpen }) => {
-  const showMenu = () => {
-    setOpen(true)
-  }
-
   const closeMenu = () => {
     setOpen(false)
   }

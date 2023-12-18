@@ -1,7 +1,7 @@
 import { Table, Grid } from 'antd'
 
-import { useStoreState, useStoreActions } from '../../../store'
-import getColumns from './Columns'
+import { useStoreState, useStoreActions } from '../../store'
+import { getColumns } from '../../ui/components/todolist/utils'
 
 interface TodoListProps {
   onEdit: (id: string) => void
