@@ -30,21 +30,26 @@ const PopoverActionMenu: React.FC<PopoverActionMenuProps> = ({
   const hide = () => {
     setOpen(false)
   }
+
   const handleOpenChange = (newOpen: boolean) => {
     setOpen(newOpen)
   }
+
   const handleToggleCompleted = () => {
     onToggleCompleted()
     hide()
   }
+
   const handleEdit = () => {
     onEdit()
     hide()
   }
+
   const handleDuplicate = () => {
     onDuplicate()
     hide()
   }
+
   const handleDelete = () => {
     onDelete()
     hide()
@@ -69,12 +74,12 @@ const PopoverActionMenu: React.FC<PopoverActionMenuProps> = ({
             Duplicate task
           </Menu.Item>
 
-          <Menu.Item key='3'>
+          <Menu.Item key='3' icon={<DeleteOutlined />}>
             <Popconfirm
               title='Confirm delete?'
-              placement='top'
+              placement='left'
               onConfirm={handleDelete}>
-              <DeleteOutlined /> Delete task
+              Delete task
             </Popconfirm>
           </Menu.Item>
         </Menu>
