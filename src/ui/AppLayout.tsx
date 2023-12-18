@@ -6,15 +6,19 @@ import HeaderContainer from './HeaderContainer'
 import { useStoreState } from '../store'
 import styles from './ui.module.scss'
 
+interface AppLayoutProps {
+  children: React.ReactNode
+}
+
 const { useBreakpoint } = Grid
 
-const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
+  const { md } = useBreakpoint()
   const [open, setOpen] = useState(false)
   const isAuthenticated = useStoreState((state) => state.isAuthenticated)
-  const { md } = useBreakpoint()
 
   return (
-    <Layout theme='light' className={styles.fullheight}>
+    <Layout className={styles.fullheight}>
       {isAuthenticated && <HeaderContainer setOpen={setOpen} />}
       <Layout>
         {isAuthenticated && <SiderContainer open={open} setOpen={setOpen} />}

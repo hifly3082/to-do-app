@@ -7,7 +7,6 @@ export interface Todo {
   id?: string
   name: string
   description?: string
-  // dueDate?: string | Date | null | undefined
   dueDate?: string | null
   completed?: boolean
 }
