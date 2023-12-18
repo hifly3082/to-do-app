@@ -1,6 +1,8 @@
 export interface User {
   email: string
   password: string
+  firstName?: string
+  lastName?: string
 }
 
 export interface Todo {
@@ -12,9 +14,9 @@ export interface Todo {
 }
 
 export const enum RouteNames {
+  Home = 'home',
   Login = 'login',
   Todo = 'todo',
   Account = 'account',
-  About = 'about',
-  Home = 'home'
+  About = 'about'
 }
