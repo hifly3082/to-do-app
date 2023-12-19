@@ -1,8 +1,12 @@
 # Todo app
 
-### General Information
+### Requirements
 
-A simple and intuitive todo application built with React. Manage your tasks efficiently and stay organized with this easy-to-use task manager.
+- Users should be able to add, edit, and delete tasks with ease.
+- The system should support marking tasks as completed for progress tracking.
+- Tasks must be sortable by the due date to facilitate organized viewing.
+- The application should feature a responsive design for usability across various devices.
+- The technology stack should be adaptable to allow for versatile implementation.
 
 ### Tech Stack
 
@@ -12,14 +16,6 @@ A simple and intuitive todo application built with React. Manage your tasks effi
 - React Router 6.18.0
 - easy-peasy 6.0.4
 - Ant Design 5.11.1
-
-### Features
-
-- Add, edit, and delete tasks
-- Mark tasks as completed
-- Sort tasks by due date
-- Responsive design for seamless use on various devices
-- User-friendly interface for an enjoyable task management experience
 
 ### Installation and setup
 
