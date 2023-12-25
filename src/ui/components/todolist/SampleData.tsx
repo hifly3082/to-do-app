@@ -1,18 +1,6 @@
 import { generateId } from '../../../utilities/helpers'
 
-export const SampleData = [
-  {
-    id: generateId(),
-    completed: false,
-    name: 'Iron shirts',
-    dueDate: '2023-06-30T04:00:00.000Z'
-  },
-  {
-    id: generateId(),
-    completed: false,
-    name: 'Send applications',
-    dueDate: ''
-  },
+export const sampleData = [
   {
     id: generateId(),
     completed: true,
@@ -23,8 +11,20 @@ export const SampleData = [
   {
     id: generateId(),
     completed: false,
+    name: 'Iron shirts',
+    dueDate: ''
+  },
+  {
+    id: generateId(),
+    completed: false,
+    name: 'Go grocery shopping',
+    dueDate: '2023-06-30T04:00:00.000Z'
+  },
+  {
+    id: generateId(),
+    completed: false,
     name: 'Celebrate New Year',
     description: "Don't forget to send gifts",
-    dueDate: '2023-12-31T04:00:00.000Z'
+    dueDate: '2023-12-31T11:59:59.000Z'
   }
 ]
