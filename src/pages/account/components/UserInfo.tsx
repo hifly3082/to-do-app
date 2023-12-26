@@ -1,16 +1,18 @@
 import { Grid, Avatar, Button, Menu, Popover, Space, Typography } from 'antd'
 import { UserOutlined, LogoutOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
-import { useStoreActions, useStoreState } from '../../../store'
+
+interface UserInfoProps {
+  isAuthenticated: boolean
+  logout: () => void
+}
 
 const placeholder = 'https://avatar.iran.liara.run/public'
 
 const { useBreakpoint } = Grid
 
-const UserInfo = () => {
+const UserInfo: React.FC<UserInfoProps> = ({ isAuthenticated, logout }) => {
   const { md } = useBreakpoint()
-  const isAuthenticated = useStoreState((state) => state.isAuthenticated)
-  const logout = useStoreActions((actions) => actions.logout)
 
   const handleLogout = () => {
     logout()
