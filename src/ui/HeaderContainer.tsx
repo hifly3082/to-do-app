@@ -2,7 +2,7 @@ import { Header } from 'antd/es/layout/layout'
 import { Button, Grid } from 'antd'
 import { MenuOutlined } from '@ant-design/icons'
 
-import { useStoreState } from '../store'
+import { useStoreActions, useStoreState } from '../store'
 import UserInfo from '../pages/account/components/UserInfo'
 import styles from './ui.module.scss'
 
@@ -15,6 +15,7 @@ const { useBreakpoint } = Grid
 const HeaderContainer: React.FC<HeaderContainerProps> = ({ setOpen }) => {
   const { md } = useBreakpoint()
   const isAuthenticated = useStoreState((state) => state.isAuthenticated)
+  const logout = useStoreActions((actions) => actions.logout)
 
   return md ? (
     <Header className={styles.header}>
@@ -28,7 +29,7 @@ const HeaderContainer: React.FC<HeaderContainerProps> = ({ setOpen }) => {
           <MenuOutlined />
         </Button>
       )}
-      <UserInfo />
+      <UserInfo isAuthenticated={isAuthenticated} logout={logout} />
     </Header>
   )
 }
