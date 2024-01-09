@@ -3,11 +3,14 @@ import { Todo, User } from '../types'
 import { generateId } from '../utilities/helpers'
 
 export interface StoreModel {
-  isAuthenticated: boolean
+  // state
   user: User
+  todos: Todo[]
+  isAuthenticated: boolean
+
+  // actions
   login: Action<StoreModel, User>
   logout: Action<StoreModel>
-  todos: Todo[]
   addTodo: Action<StoreModel, Todo>
   loadData: Action<StoreModel, Todo[]>
   deleteTodo: Action<StoreModel, string>
@@ -16,12 +19,16 @@ export interface StoreModel {
   toggleStatus: Action<StoreModel, string>
 }
 
-const storeModel: StoreModel = {
-  isAuthenticated: false,
+export const storeModel: StoreModel = {
+  // state
   user: {
     email: 'mav@example.com',
     password: 'mav@example.com'
   },
+  todos: [],
+  isAuthenticated: false,
+
+  // actions
   login: action((state, payload) => {
     if (
       payload.email === state.user.email &&
@@ -32,10 +39,11 @@ const storeModel: StoreModel = {
       throw new Error('Login failed')
     }
   }),
+
   logout: action((state) => {
     state.isAuthenticated = false
   }),
-  todos: [],
+
   addTodo: action((state, payload) => {
     state.todos.push({
       id: generateId(),
@@ -45,7 +53,8 @@ const storeModel: StoreModel = {
       dueDate: payload.dueDate || null
     })
   }),
-  // Loading sample data
+
+  // loading sample data
   loadData: action((state, payload) => {
     if (Array.isArray(payload)) {
       payload.forEach((item) => {
@@ -53,9 +62,11 @@ const storeModel: StoreModel = {
       })
     }
   }),
+
   deleteTodo: action((state, id) => {
     state.todos = state.todos.filter((todo) => todo.id !== id)
   }),
+
   copyTodo: action((state, id) => {
     const todo = state.todos.find((todo) => todo.id === id)
     if (todo) {
@@ -66,6 +77,7 @@ const storeModel: StoreModel = {
       state.todos.push(newTodo)
     }
   }),
+
   editTodo: action((state, payload) => {
     const todo = state.todos.find((todo) => todo.id === payload.id)
     if (todo) {
@@ -74,6 +86,7 @@ const storeModel: StoreModel = {
       todo.dueDate = payload.dueDate || null
     }
   }),
+
   toggleStatus: action((state, id) => {
     const todo = state.todos.find((todo) => todo.id === id)
     if (todo) {

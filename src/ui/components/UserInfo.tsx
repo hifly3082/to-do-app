@@ -23,7 +23,7 @@ const UserInfo: React.FC<UserInfoProps> = ({ isAuthenticated, logout }) => {
   return (
     <Popover
       content={
-        <Menu style={{ border: 'none' }}>
+        <Menu data-testid='content' style={{ border: 'none' }}>
           <Menu.Item key='0' icon={<UserOutlined />}>
             <Link to='/account'>Account</Link>
           </Menu.Item>
@@ -34,7 +34,7 @@ const UserInfo: React.FC<UserInfoProps> = ({ isAuthenticated, logout }) => {
         </Menu>
       }
       title={
-        <Space align='center'>
+        <Space data-testid='title' align='center'>
           <Avatar size={56} src={placeholder} />
           <div>
             <Typography.Title level={5}>M. Avvakumov</Typography.Title>
@@ -44,9 +44,9 @@ const UserInfo: React.FC<UserInfoProps> = ({ isAuthenticated, logout }) => {
       }
       trigger='click'
       placement='bottomRight'>
-      <Button type='link'>
+      <Button type='link' data-testid='userinfo'>
         <Space>
-          <Avatar size={md ? 30 : 25} src={placeholder} />{' '}
+          <Avatar data-testid='avatar' size={md ? 30 : 25} src={placeholder} />{' '}
           {md && 'Mark Avvakumov'}
         </Space>
       </Button>

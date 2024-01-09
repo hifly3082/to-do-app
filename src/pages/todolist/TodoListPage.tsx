@@ -3,9 +3,10 @@ import { Button, Divider, Form, Row, Space, Spin } from 'antd'
 
 import { Todo } from '../../types'
 import { useStoreActions, useStoreState } from '../../store'
-import { sampleData } from '../../ui/components/todolist/sampleData'
-import AddEditFormContainer from '../../ui/components/todolist/AddEditFormContainer'
+
 import TodoList from './TodoList'
+import AddEditFormContainer from '../../ui/components/todolist/AddEditFormContainer'
+import { createSampleData } from '../../ui/components/todolist/sampleData'
 
 const TodoListPage: React.FC = () => {
   const [form] = Form.useForm()
@@ -54,6 +55,7 @@ const TodoListPage: React.FC = () => {
 
   const handleLoadData = () => {
     setLoading(true)
+    const sampleData = createSampleData(6)
     const loadDataFunction = () => {
       loadData(sampleData)
       setLoading(false)

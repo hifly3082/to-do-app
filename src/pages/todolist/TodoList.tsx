@@ -44,7 +44,7 @@ const TodoList: React.FC<TodoListProps> = ({ onEdit }) => {
       })}
       dataSource={todos}
       rowKey='id'
-      pagination={{ position: ['bottomLeft'] }}
+      pagination={{ defaultPageSize: 8, position: ['bottomLeft'] }}
       locale={{
         triggerDesc: 'Sort by date (descending)',
         triggerAsc: 'Sort by date (ascending)'

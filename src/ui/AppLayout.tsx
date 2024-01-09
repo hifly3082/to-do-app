@@ -18,7 +18,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
   const isAuthenticated = useStoreState((state) => state.isAuthenticated)
 
   return (
-    <Layout className={styles.fullheight}>
+    <Layout data-testid='layout' className={styles.fullheight}>
       {isAuthenticated && <HeaderContainer setOpen={setOpen} />}
       <Layout>
         {isAuthenticated && <SiderContainer open={open} setOpen={setOpen} />}

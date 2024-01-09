@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest'
 
-import { calculateCompletionPercentage } from '../utilities/helpers'
+import { calculateCompletionPercentage } from './helpers'
 import { sampleData } from '../ui/components/todolist/sampleData'
 
 test('calculateCompletionPercentage', () => {

@@ -10,6 +10,10 @@ import { RouteNames } from '../../types'
 
 type MenuItem = Required<MenuProps>['items'][number]
 
+interface NavMenuProps {
+  items?: MenuItem[]
+}
+
 function getItem(
   label: React.ReactNode,
   key: React.Key,
@@ -24,7 +28,7 @@ function getItem(
   } as MenuItem
 }
 
-const items: MenuItem[] = [
+const menuItems: MenuItem[] = [
   getItem(
     <Link to={`/${RouteNames.Todo}`}>To do list</Link>,
     `/${RouteNames.Todo}`,
@@ -42,11 +46,12 @@ const items: MenuItem[] = [
   )
 ]
 
-const NavMenu = () => {
+const NavMenu: React.FC<NavMenuProps> = ({ items = menuItems }) => {
   const location = useLocation()
 
   return (
     <Menu
+      data-testid='menu'
       theme='light'
       mode='inline'
       defaultSelectedKeys={[RouteNames.Todo]}

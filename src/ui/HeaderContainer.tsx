@@ -3,7 +3,7 @@ import { Button, Grid } from 'antd'
 import { MenuOutlined } from '@ant-design/icons'
 
 import { useStoreActions, useStoreState } from '../store'
-import UserInfo from '../pages/account/components/UserInfo'
+import UserInfo from './components/UserInfo'
 import styles from './ui.module.scss'
 
 interface HeaderContainerProps {
@@ -17,15 +17,19 @@ const HeaderContainer: React.FC<HeaderContainerProps> = ({ setOpen }) => {
   const isAuthenticated = useStoreState((state) => state.isAuthenticated)
   const logout = useStoreActions((actions) => actions.logout)
 
+  const handleClick = () => {
+    setOpen((prev) => !prev)
+  }
+
   return md ? (
-    <Header className={styles.header}>
+    <Header data-testid='header' className={styles.header}>
       <div></div>
-      <UserInfo />
+      <UserInfo isAuthenticated={isAuthenticated} logout={logout} />
     </Header>
   ) : (
-    <Header className={styles.header}>
+    <Header data-testid='header' className={styles.header}>
       {isAuthenticated && (
-        <Button onClick={() => setOpen((prev) => !prev)}>
+        <Button onClick={handleClick}>
           <MenuOutlined />
         </Button>
       )}
