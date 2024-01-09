@@ -7,6 +7,7 @@ import { useStoreActions, useStoreState } from '../../store'
 import TodoList from './TodoList'
 import AddEditFormContainer from '../../ui/components/todolist/AddEditFormContainer'
 import { createSampleData } from '../../ui/components/todolist/sampleData'
+import styles from './todo.module.scss'
 
 const TodoListPage: React.FC = () => {
   const [form] = Form.useForm()
@@ -78,10 +79,8 @@ const TodoListPage: React.FC = () => {
         />
       </Form.Provider>
 
-      <Divider />
-
       <Row justify='center'>
-        <Space>
+        <Space className={styles.buttons}>
           <Button disabled={loading} type='primary' onClick={handleOpenModal}>
             Add new task
           </Button>
