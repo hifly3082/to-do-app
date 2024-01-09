@@ -116,26 +116,7 @@ export const getColumns = ({
     : // mobile version
       [
         {
-          sorter: (a: Todo, b: Todo) => {
-            const dateA = a.dueDate && dayjs(a.dueDate)
-            const dateB = b.dueDate && dayjs(b.dueDate)
-
-            return dateA && dateB
-              ? dateA.isBefore(dateB)
-                ? -1
-                : dateA.isAfter(dateB)
-                ? 1
-                : 0
-              : dateA
-              ? 1
-              : dateB
-              ? -1
-              : 0
-          }
-        },
-        {
           key: 'name',
-          width: '85%',
           render: (todo: Todo) => (
             <div>
               <Title level={4} delete={todo.completed}>
@@ -162,7 +143,23 @@ export const getColumns = ({
               onEdit={handleEdit(todo.id)}
               onToggleCompleted={handleToggleCompleted(todo.id)}
             />
-          )
+          ),
+          sorter: (a: Todo, b: Todo) => {
+            const dateA = a.dueDate && dayjs(a.dueDate)
+            const dateB = b.dueDate && dayjs(b.dueDate)
+
+            return dateA && dateB
+              ? dateA.isBefore(dateB)
+                ? -1
+                : dateA.isAfter(dateB)
+                ? 1
+                : 0
+              : dateA
+              ? 1
+              : dateB
+              ? -1
+              : 0
+          }
         }
       ]
 }
