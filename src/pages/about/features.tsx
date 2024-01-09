@@ -14,7 +14,6 @@ export const features = [
   },
   {
     title: 'Extensive features',
-    subheader: 'Most popular',
     icon: <SlidersOutlined />,
     description:
       'From simple task lists to advanced project management, Todo app caters to all your organizational needs. Set due dates, create subtasks, and prioritize your to-dos with ease'
