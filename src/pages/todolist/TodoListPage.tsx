@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Button, Divider, Form, Row, Space, Spin } from 'antd'
+import { Button, Form, Row, Space, Spin } from 'antd'
 
 import { Todo } from '../../types'
 import { useStoreActions, useStoreState } from '../../store'
