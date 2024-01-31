@@ -1,11 +1,11 @@
 import { Link, useLocation } from 'react-router-dom'
-
 import { Menu, MenuProps } from 'antd'
 import {
   UnorderedListOutlined,
   UserOutlined,
   SecurityScanOutlined
 } from '@ant-design/icons'
+
 import { RouteNames } from '../../types'
 
 type MenuItem = Required<MenuProps>['items'][number]

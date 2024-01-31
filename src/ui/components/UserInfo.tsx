@@ -1,6 +1,6 @@
+import { Link } from 'react-router-dom'
 import { Grid, Avatar, Button, Menu, Popover, Space, Typography } from 'antd'
 import { UserOutlined, LogoutOutlined } from '@ant-design/icons'
-import { Link } from 'react-router-dom'
 
 interface UserInfoProps {
   isAuthenticated: boolean

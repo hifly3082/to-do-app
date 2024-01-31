@@ -1,5 +1,5 @@
+import { useState } from 'react'
 import { Button, Menu, Popconfirm, Popover } from 'antd'
-import { Todo } from '../../../types'
 import {
   CopyOutlined,
   EditOutlined,
@@ -8,7 +8,8 @@ import {
   CheckOutlined,
   CloseOutlined
 } from '@ant-design/icons'
-import { useState } from 'react'
+
+import { Todo } from '../../../types'
 
 interface PopoverActionMenuProps {
   todo: Todo

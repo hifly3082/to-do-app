@@ -1,8 +1,9 @@
+import { FormEvent } from 'react'
 import { Link } from 'react-router-dom'
 import { Button, Checkbox, Col, Form, FormInstance, Input, Row } from 'antd'
 import { LoginOutlined } from '@ant-design/icons'
+
 import { User } from '../../../types'
-import { FormEvent } from 'react'
 
 interface LoginFormProps {
   form: FormInstance
